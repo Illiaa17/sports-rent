@@ -1,0 +1,8 @@
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.csproj.AssemblyReference.cache
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/Avalonia/resources
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.GeneratedMSBuildEditorConfig.editorconfig
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.AssemblyInfoInputs.cache
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.AssemblyInfo.cs
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.csproj.CoreCompileInputs.cache
+/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/obj/Debug/net8.0/sport-rent.sourcelink.json

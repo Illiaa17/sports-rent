@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="sport_rent.Views.MainWindow"
+        Title="Прокат Спортивного Спорядження"
+        Width="1200"
+        Height="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <TextBlock Text="MainWindow працює!" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+    </Grid>
+
+</Window>

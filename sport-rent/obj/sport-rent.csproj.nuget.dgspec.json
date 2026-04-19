@@ -17,14 +17,14 @@
           "/Users/illiapaidych/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net10.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net10.0": {
-            "targetAlias": "net10.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -32,31 +32,36 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net10.0": {
-          "targetAlias": "net10.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[12.0.0, )"
+              "version": "[11.2.0, )"
+            },
+            "Avalonia.Controls.DataGrid": {
+              "target": "Package",
+              "version": "[11.2.0, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[12.0.0, )"
+              "version": "[11.2.0, )"
             },
-            "Avalonia.Fonts.Inter": {
+            "Avalonia.ReactiveUI": {
               "target": "Package",
-              "version": "[12.0.0, )"
+              "version": "[11.2.0, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[12.0.0, )"
-            },
-            "AvaloniaUI.DiagnosticsSupport": {
-              "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[11.2.0, )"
             },
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -65,10 +70,6 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.4.2, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[11.0.0-preview.3.26207.106, )"
             }
           },
           "imports": [
@@ -77,7 +78,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -86,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
