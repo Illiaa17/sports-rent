@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:LoginViewModel"
+             x:Class="sport_rent.Views.LoginView">
+
+    <Grid Background="#0F172A">
+        <StackPanel Spacing="30" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+            
+            <TextBlock Text=" SportRent" 
+                       FontSize="48" 
+                       FontWeight="Bold" 
+                       Foreground="#22C55E" 
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Автоматизація пункту прокату" 
+                       FontSize="18" 
+                       Foreground="#94A3B8" 
+                       HorizontalAlignment="Center" />
+
+            <StackPanel Spacing="18" Margin="0,20,0,0">
+                <TextBox Text="{Binding Login}" 
+                         Watermark="Логін" 
+                         Height="52" FontSize="16"/>
+
+                <TextBox Text="{Binding Password}" 
+                         Watermark="Пароль" 
+                         PasswordChar="●" 
+                         Height="52" FontSize="16"/>
+
+                <Button Content="Увійти" 
+                        Command="{Binding LoginCommand}" 
+                        Height="56" 
+                        FontSize="18" 
+                        Background="#22C55E" 
+                        Foreground="White"/>
+
+                <TextBlock Text="{Binding ErrorMessage}" 
+                           Foreground="#EF4444" 
+                           HorizontalAlignment="Center" 
+                           FontSize="14"/>
+            </StackPanel>
+
+            <TextBlock Text="admin / admin123" 
+                       Foreground="#64748B" 
+                       FontSize="13" 
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:RentalViewModel"
+             x:Class="sport_rent.Views.RentalView">
+
+    <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Нова оренда / Список оренд" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Активні оренди">
+                <DataGrid ItemsSource="{Binding Rentals}"/>
+            </TabItem>
+            <TabItem Header="Оформити нову оренду">
+                <!-- Форма оренди буде розширена пізніше -->
+                <TextBlock Text="Форма оформлення оренди (буде розширено)" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           FontSize="18"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

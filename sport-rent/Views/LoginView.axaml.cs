@@ -1,7 +1,17 @@
-namespace sport_rent.Views
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+
+namespace sport_rent.Views;
+
+public partial class LoginView : UserControl
 {
-    public class LoginView_axaml
+    public LoginView()
     {
-        
+        InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
     }
 }

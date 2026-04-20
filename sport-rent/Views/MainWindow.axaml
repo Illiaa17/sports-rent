@@ -1,19 +1,22 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        x:Class="sport_rent.Views.MainWindow"
-        Title="Прокат Спортивного Спорядження"
-        Width="1200"
-        Height="700"
-        WindowStartupLocation="CenterScreen">
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:MainViewModel">
 
-    <Grid>
-        <TextBlock Text="MainWindow працює!" 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="20"/>
+    <Grid ColumnDefinitions="250,*">
+        <!-- Sidebar -->
+        <Border Background="#1E2937" Grid.Column="0">
+            <StackPanel Spacing="8" Margin="20">
+                <Button Content="{Binding [Dashboard]}" Command="{Binding ShowDashboardCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding [Equipment]}" Command="{Binding ShowEquipmentCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding [Customers]}" Command="{Binding ShowCustomersCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding [Rentals]}" Command="{Binding ShowRentalsCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding [Settings]}" Command="{Binding ShowSettingsCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding [Logout]}" HorizontalAlignment="Stretch" Margin="0,40,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1" Margin="20"/>
     </Grid>
-
-</Window>
+</UserControl>

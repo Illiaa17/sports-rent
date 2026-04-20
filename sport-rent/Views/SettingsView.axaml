@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:SettingsViewModel"
+             x:Class="sport_rent.Views.SettingsView">
+
+    <StackPanel Spacing="25" Margin="40">
+        <TextBlock Text="Налаштування" FontSize="32" FontWeight="Bold"/>
+
+        <GroupBox Header="Мова інтерфейсу">
+            <StackPanel Spacing="10">
+                <Button Content="🇺🇦 Українська" Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
+                <Button Content="🇬🇧 English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Тема">
+            <Button Content="Перемкнути тему (Light/Dark)" Command="{Binding ToggleThemeCommand}"/>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

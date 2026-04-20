@@ -1,29 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="Data\**\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Images\**\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.2.0" />
         <PackageReference Include="Avalonia.Desktop" Version="11.2.0" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.0" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.0" />
-        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.2.0" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-        <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.0" />
     </ItemGroup>
 
 </Project>

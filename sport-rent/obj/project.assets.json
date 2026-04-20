@@ -107,23 +107,6 @@
           "buildTransitive/Avalonia.BuildServices.targets": {}
         }
       },
-      "Avalonia.Controls.DataGrid/11.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "11.2.0",
-          "Avalonia.Remote.Protocol": "11.2.0"
-        },
-        "compile": {
-          "lib/net8.0/Avalonia.Controls.DataGrid.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Avalonia.Controls.DataGrid.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Avalonia.Desktop/11.2.0": {
         "type": "package",
         "dependencies": {
@@ -287,29 +270,29 @@
           }
         }
       },
-      "BCrypt.Net-Next/4.1.0": {
+      "BCrypt.Net-Next/4.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.1/BCrypt.Net-Next.dll": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.1/BCrypt.Net-Next.dll": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
             "related": ".xml"
           }
         }
       },
-      "CommunityToolkit.Mvvm/8.4.2": {
+      "CommunityToolkit.Mvvm/8.3.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "build": {
@@ -830,24 +813,6 @@
         "tools/netstandard2.0/runtimeconfig.json"
       ]
     },
-    "Avalonia.Controls.DataGrid/11.2.0": {
-      "sha512": "nmtigVPgYVYMZbQR1wRz5InSk5ab8INSwmFzDbIqsYdn+Mj4/5lB4d5MoxIj3wEQUcxqkO7iqNFsOKafYvjZqg==",
-      "type": "package",
-      "path": "avalonia.controls.datagrid/11.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "avalonia.controls.datagrid.11.2.0.nupkg.sha512",
-        "avalonia.controls.datagrid.nuspec",
-        "lib/net6.0/Avalonia.Controls.DataGrid.dll",
-        "lib/net6.0/Avalonia.Controls.DataGrid.xml",
-        "lib/net8.0/Avalonia.Controls.DataGrid.dll",
-        "lib/net8.0/Avalonia.Controls.DataGrid.xml",
-        "lib/netstandard2.0/Avalonia.Controls.DataGrid.dll",
-        "lib/netstandard2.0/Avalonia.Controls.DataGrid.xml"
-      ]
-    },
     "Avalonia.Desktop/11.2.0": {
       "sha512": "oEsuiMzsr9QCQmi+J0wYvpEySzEpqmbg1EWi5FyrXaHM1E7e8LVxgi97G2W9+kKYrm3BCRvSDGW4dYsKIb3UXg==",
       "type": "package",
@@ -1011,18 +976,16 @@
         "lib/netstandard2.0/Avalonia.X11.xml"
       ]
     },
-    "BCrypt.Net-Next/4.1.0": {
-      "sha512": "5YT3DKllmtkyW68PjURu/V1TOe4MKiByKwsRNVcfYE1S5KuFTeozdmKzyNzolKiQF391OXCaQtINvYT3j1ERzQ==",
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "type": "package",
-      "path": "bcrypt.net-next/4.1.0",
+      "path": "bcrypt.net-next/4.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "bcrypt.net-next.4.1.0.nupkg.sha512",
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
         "bcrypt.net-next.nuspec",
         "ico.png",
-        "lib/net10.0/BCrypt.Net-Next.dll",
-        "lib/net10.0/BCrypt.Net-Next.xml",
         "lib/net20/BCrypt.Net-Next.dll",
         "lib/net20/BCrypt.Net-Next.xml",
         "lib/net35/BCrypt.Net-Next.dll",
@@ -1033,6 +996,10 @@
         "lib/net472/BCrypt.Net-Next.xml",
         "lib/net48/BCrypt.Net-Next.dll",
         "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
         "lib/netstandard2.0/BCrypt.Net-Next.dll",
         "lib/netstandard2.0/BCrypt.Net-Next.xml",
         "lib/netstandard2.1/BCrypt.Net-Next.dll",
@@ -1040,10 +1007,10 @@
         "readme.md"
       ]
     },
-    "CommunityToolkit.Mvvm/8.4.2": {
-      "sha512": "WadCzGEc2U+3e20avRLng4qNtt4zoOGWrdUISqJWrHe3/FSnrYjuM5Sb4yQb09LhkBXrrI4Zt3dLKgRMbItsrg==",
+    "CommunityToolkit.Mvvm/8.3.0": {
+      "sha512": "APWb6lZI3l8WVf5Ijp3WHHe471anU9pJ04aNJNCNJQ3kKy/mUW6irvDwyXeYTLaaNNGBAyo4/musnA/oQRKS/Q==",
       "type": "package",
-      "path": "communitytoolkit.mvvm/8.4.2",
+      "path": "communitytoolkit.mvvm/8.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1052,31 +1019,30 @@
         "ThirdPartyNotices.txt",
         "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
         "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "analyzers/dotnet/roslyn4.12/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn4.12/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
         "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
         "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "analyzers/dotnet/roslyn5.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn5.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
         "build/CommunityToolkit.Mvvm.FeatureSwitches.targets",
         "build/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "build/CommunityToolkit.Mvvm.Windows.targets",
-        "build/CommunityToolkit.Mvvm.WindowsSdk.targets",
         "build/CommunityToolkit.Mvvm.targets",
         "buildTransitive/CommunityToolkit.Mvvm.FeatureSwitches.targets",
         "buildTransitive/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.Windows.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.WindowsSdk.targets",
         "buildTransitive/CommunityToolkit.Mvvm.targets",
-        "communitytoolkit.mvvm.8.4.2.nupkg.sha512",
+        "communitytoolkit.mvvm.8.3.0.nupkg.sha512",
         "communitytoolkit.mvvm.nuspec",
+        "lib/net6.0/CommunityToolkit.Mvvm.dll",
+        "lib/net6.0/CommunityToolkit.Mvvm.pdb",
+        "lib/net6.0/CommunityToolkit.Mvvm.xml",
         "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.dll",
+        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.pdb",
         "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.xml",
         "lib/net8.0/CommunityToolkit.Mvvm.dll",
+        "lib/net8.0/CommunityToolkit.Mvvm.pdb",
         "lib/net8.0/CommunityToolkit.Mvvm.xml",
         "lib/netstandard2.0/CommunityToolkit.Mvvm.dll",
+        "lib/netstandard2.0/CommunityToolkit.Mvvm.pdb",
         "lib/netstandard2.0/CommunityToolkit.Mvvm.xml",
         "lib/netstandard2.1/CommunityToolkit.Mvvm.dll",
+        "lib/netstandard2.1/CommunityToolkit.Mvvm.pdb",
         "lib/netstandard2.1/CommunityToolkit.Mvvm.xml"
       ]
     },
@@ -1691,12 +1657,11 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Avalonia >= 11.2.0",
-      "Avalonia.Controls.DataGrid >= 11.2.0",
       "Avalonia.Desktop >= 11.2.0",
       "Avalonia.ReactiveUI >= 11.2.0",
       "Avalonia.Themes.Fluent >= 11.2.0",
-      "BCrypt.Net-Next >= 4.1.0",
-      "CommunityToolkit.Mvvm >= 8.4.2"
+      "BCrypt.Net-Next >= 4.0.3",
+      "CommunityToolkit.Mvvm >= 8.3.0"
     ]
   },
   "packageFolders": {
@@ -1745,10 +1710,6 @@
             "target": "Package",
             "version": "[11.2.0, )"
           },
-          "Avalonia.Controls.DataGrid": {
-            "target": "Package",
-            "version": "[11.2.0, )"
-          },
           "Avalonia.Desktop": {
             "target": "Package",
             "version": "[11.2.0, )"
@@ -1763,11 +1724,11 @@
           },
           "BCrypt.Net-Next": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.0.3, )"
           },
           "CommunityToolkit.Mvvm": {
             "target": "Package",
-            "version": "[8.4.2, )"
+            "version": "[8.3.0, )"
           }
         },
         "imports": [

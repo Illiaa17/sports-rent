@@ -47,10 +47,6 @@
               "target": "Package",
               "version": "[11.2.0, )"
             },
-            "Avalonia.Controls.DataGrid": {
-              "target": "Package",
-              "version": "[11.2.0, )"
-            },
             "Avalonia.Desktop": {
               "target": "Package",
               "version": "[11.2.0, )"
@@ -65,11 +61,11 @@
             },
             "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[4.0.3, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.4.2, )"
+              "version": "[8.3.0, )"
             }
           },
           "imports": [

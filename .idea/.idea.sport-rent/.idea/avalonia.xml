@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="sport-rent/App.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/LoginWindow.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/MainWindow.axaml" value="sport-rent/sport-rent.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

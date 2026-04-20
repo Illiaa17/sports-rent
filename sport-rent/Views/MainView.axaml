@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:MainViewModel"
+             x:Class="sport_rent.Views.MainView">
+
+    <Grid ColumnDefinitions="260,*" Background="#0F172A">
+        <!-- Sidebar -->
+        <Border Background="#1E2937" Grid.Column="0">
+            <StackPanel Margin="20" Spacing="8">
+                <TextBlock Text="🏔️ SportRent" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Foreground="#22C55E" 
+                           Margin="0,0,0,30"/>
+
+                <Button Content="📊 Головна" 
+                        Command="{Binding ShowDashboardCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" FontSize="16"/>
+
+                <Button Content="🎿 Спорядження" 
+                        Command="{Binding ShowEquipmentCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" FontSize="16"/>
+
+                <Button Content="👤 Клієнти" 
+                        Command="{Binding ShowCustomersCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" FontSize="16"/>
+
+                <Button Content="📋 Оренди" 
+                        Command="{Binding ShowRentalsCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" FontSize="16"/>
+
+                <Button Content="⚙️ Налаштування" 
+                        Command="{Binding ShowSettingsCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" FontSize="16" Margin="0,30,0,0"/>
+
+                <Button Content="🚪 Вийти" 
+                        Command="{Binding LogoutCommand}" 
+                        Height="52" HorizontalAlignment="Stretch" 
+                        Background="#EF4444" Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Основний контент -->
+        <ContentControl Content="{Binding CurrentView}" 
+                        Grid.Column="1" 
+                        Margin="30,20,30,20"/>
+    </Grid>
+</UserControl>
