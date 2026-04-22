@@ -1,22 +1,11 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:sport_rent.ViewModels"
-             x:DataType="vm:MainViewModel">
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:sport_rent.Views"
+        Title="SportRent - Система прокату" 
+        Width="1200" 
+        Height="700"
+        WindowStartupLocation="CenterScreen"
+        x:Class="sport_rent.Views.MainWindow">
 
-    <Grid ColumnDefinitions="250,*">
-        <!-- Sidebar -->
-        <Border Background="#1E2937" Grid.Column="0">
-            <StackPanel Spacing="8" Margin="20">
-                <Button Content="{Binding [Dashboard]}" Command="{Binding ShowDashboardCommand}" HorizontalAlignment="Stretch"/>
-                <Button Content="{Binding [Equipment]}" Command="{Binding ShowEquipmentCommand}" HorizontalAlignment="Stretch"/>
-                <Button Content="{Binding [Customers]}" Command="{Binding ShowCustomersCommand}" HorizontalAlignment="Stretch"/>
-                <Button Content="{Binding [Rentals]}" Command="{Binding ShowRentalsCommand}" HorizontalAlignment="Stretch"/>
-                <Button Content="{Binding [Settings]}" Command="{Binding ShowSettingsCommand}" HorizontalAlignment="Stretch"/>
-                <Button Content="{Binding [Logout]}" HorizontalAlignment="Stretch" Margin="0,40,0,0"/>
-            </StackPanel>
-        </Border>
-
-        <!-- Content -->
-        <ContentControl Content="{Binding CurrentView}" Grid.Column="1" Margin="20"/>
-    </Grid>
-</UserControl>
+    <views:MainView />
+</Window>

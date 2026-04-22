@@ -4,6 +4,10 @@
 
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
-        <StyleInclude Source="avares://RentalSportsEquipment/Resources/Styles.axaml"/>
+        <StyleInclude Source="avares://Avalonia.Themes.Fluent/Accents/AccentColors/AccentColorBlue.xaml"/>
     </Application.Styles>
+
+    <Application.Resources>
+        <!-- Можна додати глобальні ресурси пізніше -->
+    </Application.Resources>
 </Application>
