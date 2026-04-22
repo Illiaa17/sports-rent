@@ -1,13 +1,16 @@
+using System.Linq;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using sport_rent.Services;
-using Avalonia.Controls;
+using sport_rent.Views;
 
 namespace sport_rent.ViewModels;
 
 public partial class LoginViewModel : BaseViewModel
 {
-    [ObservableProperty] private string login = string.Empty;
+    [ObservableProperty] private string loginName = string.Empty;
     [ObservableProperty] private string password = string.Empty;
     [ObservableProperty] private string errorMessage = string.Empty;
 
@@ -16,19 +19,21 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     private void Login()
     {
-        if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
+        if (string.IsNullOrWhiteSpace(LoginName) || string.IsNullOrWhiteSpace(Password))
         {
             ErrorMessage = LocalizationService.Instance["FillAllFields"];
             return;
         }
 
-        if (_authService.Login(Login, Password))
+        if (_authService.Login(LoginName, Password))
         {
-            var mainWindow = new MainWindow { DataContext = new MainViewModel() };
-            mainWindow.Show();
-            
-            var currentWindow = App.Current?.Windows.FirstOrDefault(w => w is LoginWindow);
-            currentWindow?.Close();
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var mainWindow = new MainWindow { DataContext = new MainViewModel() };
+                desktop.MainWindow = mainWindow;
+                mainWindow.Show();
+                desktop.Windows.OfType<LoginWindow>().FirstOrDefault()?.Close();
+            }
         }
         else
         {

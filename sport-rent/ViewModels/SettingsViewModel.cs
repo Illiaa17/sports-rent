@@ -1,5 +1,5 @@
-
-
+using Avalonia;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using sport_rent.Services;
@@ -21,6 +21,10 @@ public partial class SettingsViewModel : BaseViewModel
     [RelayCommand]
     private void ToggleTheme()
     {
-        // Avalonia Fluent підтримує Light/Dark — можна розширити пізніше
+        var app = Application.Current;
+        if (app == null) return;
+        app.RequestedThemeVariant = app.RequestedThemeVariant == ThemeVariant.Dark
+            ? ThemeVariant.Light
+            : ThemeVariant.Dark;
     }
 }

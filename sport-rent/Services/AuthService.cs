@@ -1,3 +1,4 @@
+using System.Linq;
 using sport_rent.Models;
 
 namespace sport_rent.Services;

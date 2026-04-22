@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace sport_rent.Services;
 
@@ -16,8 +17,8 @@ public class LocalizationService
 
     private readonly Dictionary<string, Dictionary<string, string>> _dict = new()
     {
-        ["uk"] = new() { {"Login", "Вхід"}, {"Dashboard", "Головна"}, {"Equipment", "Спорядження"}, {"Customers", "Клієнти"}, {"Rentals", "Оренди"}, {"Settings", "Налаштування"}, {"Logout", "Вийти"} },
-        ["en"] = new() { {"Login", "Login"}, {"Dashboard", "Dashboard"}, {"Equipment", "Equipment"}, {"Customers", "Customers"}, {"Rentals", "Rentals"}, {"Settings", "Settings"}, {"Logout", "Logout"} }
+        ["uk"] = new() { {"Login", "Вхід"}, {"Dashboard", "Головна"}, {"Equipment", "Спорядження"}, {"Customers", "Клієнти"}, {"Rentals", "Оренди"}, {"Settings", "Налаштування"}, {"Logout", "Вийти"}, {"FillAllFields", "Заповніть всі поля"}, {"InvalidCredentials", "Невірні облікові дані"} },
+        ["en"] = new() { {"Login", "Login"}, {"Dashboard", "Dashboard"}, {"Equipment", "Equipment"}, {"Customers", "Customers"}, {"Rentals", "Rentals"}, {"Settings", "Settings"}, {"Logout", "Logout"}, {"FillAllFields", "Fill all fields"}, {"InvalidCredentials", "Invalid credentials"} }
     };
 
     public string this[string key] => _dict[_lang].GetValueOrDefault(key, key);

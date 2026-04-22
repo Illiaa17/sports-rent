@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace sport-rent.Views;
+namespace sport_rent.Views;
 
 public partial class MainView : UserControl
 {

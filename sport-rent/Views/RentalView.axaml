@@ -12,11 +12,75 @@
                 <DataGrid ItemsSource="{Binding Rentals}"/>
             </TabItem>
             <TabItem Header="Оформити нову оренду">
-                <!-- Форма оренди буде розширена пізніше -->
-                <TextBlock Text="Форма оформлення оренди (буде розширено)" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" 
-                           FontSize="18"/>
+                <ScrollViewer>
+                    <StackPanel Margin="16" Spacing="12">
+                        <TextBlock Text="Клієнт" FontWeight="SemiBold"/>
+                        <ComboBox ItemsSource="{Binding Customers}"
+                                  SelectedItem="{Binding SelectedCustomer}"
+                                  HorizontalAlignment="Stretch">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FullName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Grid ColumnDefinitions="*,16,*">
+                            <StackPanel>
+                                <TextBlock Text="Дата оренди"/>
+                                <DatePicker SelectedDate="{Binding NewRentalDate}" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Дата повернення"/>
+                                <DatePicker SelectedDate="{Binding NewDueDate}" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Separator Margin="0,4"/>
+
+                        <TextBlock Text="Додати позицію" FontWeight="SemiBold"/>
+                        <Grid ColumnDefinitions="*,12,100,12,100,12,Auto">
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding EquipmentList}"
+                                      SelectedItem="{Binding SelectedEquipmentItem}"
+                                      HorizontalAlignment="Stretch">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Кількість" FontSize="11"/>
+                                <NumericUpDown Value="{Binding NewItemQuantity}" Minimum="1" FormatString="0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Text="Днів" FontSize="11"/>
+                                <NumericUpDown Value="{Binding NewItemDays}" Minimum="1" FormatString="0"/>
+                            </StackPanel>
+                            <Button Grid.Column="6" Content="Додати" Command="{Binding AddRentalItemCommand}"
+                                    VerticalAlignment="Bottom" Padding="12,6"/>
+                        </Grid>
+
+                        <DataGrid ItemsSource="{Binding SelectedRental.Items}"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  CanUserResizeColumns="True"
+                                  IsReadOnly="True"
+                                  Height="180">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Спорядження ID" Binding="{Binding EquipmentId}" Width="120"/>
+                                <DataGridTextColumn Header="К-ть" Binding="{Binding Quantity}" Width="60"/>
+                                <DataGridTextColumn Header="Днів" Binding="{Binding Days}" Width="60"/>
+                                <DataGridTextColumn Header="Ставка" Binding="{Binding DailyRate, StringFormat={}{0:F2}}" Width="80"/>
+                                <DataGridTextColumn Header="Підсумок" Binding="{Binding Subtotal, StringFormat={}{0:F2}}" Width="90"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Button Content="Зберегти оренду" Command="{Binding SaveRentalCommand}"
+                                HorizontalAlignment="Right" Padding="16,8"/>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

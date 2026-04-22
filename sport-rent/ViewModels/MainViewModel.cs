@@ -1,6 +1,10 @@
+using System.Linq;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using sport_rent.Services;
+using sport_rent.Views;
 
 namespace sport_rent.ViewModels;
 
@@ -22,8 +26,12 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     private void Logout()
     {
-        var loginWindow = new LoginWindow();
-        loginWindow.Show();
-        App.Current?.Windows.FirstOrDefault()?.Close();
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var loginWindow = new LoginWindow();
+            desktop.MainWindow = loginWindow;
+            loginWindow.Show();
+            desktop.Windows.OfType<MainWindow>().FirstOrDefault()?.Close();
+        }
     }
 }

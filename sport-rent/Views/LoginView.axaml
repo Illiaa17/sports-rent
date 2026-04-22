@@ -19,7 +19,7 @@
                        HorizontalAlignment="Center" />
 
             <StackPanel Spacing="18" Margin="0,20,0,0">
-                <TextBox Text="{Binding Login}" 
+                <TextBox Text="{Binding LoginName}"
                          Watermark="Логін" 
                          Height="52" FontSize="16"/>
 

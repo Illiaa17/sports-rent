@@ -7,15 +7,19 @@
     <StackPanel Spacing="25" Margin="40">
         <TextBlock Text="Налаштування" FontSize="32" FontWeight="Bold"/>
 
-        <GroupBox Header="Мова інтерфейсу">
+        <Border BorderThickness="1" CornerRadius="6" Padding="16">
             <StackPanel Spacing="10">
-                <Button Content="🇺🇦 Українська" Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
-                <Button Content="🇬🇧 English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
+                <TextBlock Text="Мова інтерфейсу" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,4"/>
+                <Button Content="Українська" Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
+                <Button Content="English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
             </StackPanel>
-        </GroupBox>
+        </Border>
 
-        <GroupBox Header="Тема">
-            <Button Content="Перемкнути тему (Light/Dark)" Command="{Binding ToggleThemeCommand}"/>
-        </GroupBox>
+        <Border BorderThickness="1" CornerRadius="6" Padding="16">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Тема" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,4"/>
+                <Button Content="Перемкнути тему (Light/Dark)" Command="{Binding ToggleThemeCommand}"/>
+            </StackPanel>
+        </Border>
     </StackPanel>
 </UserControl>

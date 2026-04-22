@@ -8,6 +8,8 @@ build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassNa
 build_property.AvaloniaNameGeneratorAttachDevTools = true
 build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
 build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
 build_property.ProjectTypeGuids = 
@@ -16,36 +18,38 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = sport-rent
-build_property.ProjectDir = /Users/illiapaidych/RiderProjects/sport-rent/sport-rent/
+build_property.ProjectDir = /Users/makspaidych/Development/sports-rent/sport-rent/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/App.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/CustomerView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/CustomerView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/DashboardView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/DashboardView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/EquipmentView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/EquipmentView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/LoginView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/LoginView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/LoginWindow.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/LoginWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/MainView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/MainWindow.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/RentalView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/RentalView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/illiapaidych/RiderProjects/sport-rent/sport-rent/Views/SettingsView.axaml]
+[/Users/makspaidych/Development/sports-rent/sport-rent/Views/SettingsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

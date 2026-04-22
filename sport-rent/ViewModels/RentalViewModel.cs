@@ -18,10 +18,26 @@ public partial class RentalViewModel : BaseViewModel
 
     [ObservableProperty] private Rental selectedRental = new();
     [ObservableProperty] private RentalItem newRentalItem = new();
+    [ObservableProperty] private Customer? selectedCustomer;
+    [ObservableProperty] private Equipment? selectedEquipmentItem;
+    [ObservableProperty] private DateTimeOffset newRentalDate = DateTimeOffset.Now;
+    [ObservableProperty] private DateTimeOffset newDueDate = DateTimeOffset.Now.AddDays(7);
+    [ObservableProperty] private decimal newItemQuantity = 1;
+    [ObservableProperty] private decimal newItemDays = 1;
 
     public RentalViewModel()
     {
         LoadData();
+    }
+
+    partial void OnSelectedCustomerChanged(Customer? value)
+    {
+        SelectedRental.CustomerId = value?.Id ?? 0;
+    }
+
+    partial void OnSelectedEquipmentItemChanged(Equipment? value)
+    {
+        NewRentalItem.EquipmentId = value?.Id ?? 0;
     }
 
     private void LoadData()
@@ -40,22 +56,27 @@ public partial class RentalViewModel : BaseViewModel
     [RelayCommand]
     private void AddRentalItem()
     {
-        if (NewRentalItem.EquipmentId == 0) return;
+        if (SelectedEquipmentItem == null) return;
 
-        var eq = EquipmentList.FirstOrDefault(e => e.Id == NewRentalItem.EquipmentId);
-        if (eq == null) return;
-
-        NewRentalItem.DailyRate = eq.DailyRate;
+        NewRentalItem.EquipmentId = SelectedEquipmentItem.Id;
+        NewRentalItem.Quantity = (int)NewItemQuantity;
+        NewRentalItem.Days = (int)NewItemDays;
+        NewRentalItem.DailyRate = SelectedEquipmentItem.DailyRate;
         NewRentalItem.Subtotal = NewRentalItem.DailyRate * NewRentalItem.Days * NewRentalItem.Quantity;
 
         SelectedRental.Items.Add(NewRentalItem);
         NewRentalItem = new RentalItem();
+        SelectedEquipmentItem = null;
+        NewItemQuantity = 1;
+        NewItemDays = 1;
         OnPropertyChanged(nameof(SelectedRental));
     }
 
     [RelayCommand]
     private void SaveRental()
     {
+        SelectedRental.RentalDate = NewRentalDate.DateTime;
+        SelectedRental.DueDate = NewDueDate.DateTime;
         SelectedRental.TotalAmount = SelectedRental.Items.Sum(i => i.Subtotal);
         var list = Rentals.ToList();
         if (SelectedRental.Id == 0)
@@ -64,6 +85,10 @@ public partial class RentalViewModel : BaseViewModel
             Rentals.Add(SelectedRental);
         }
         _dataService.Save("rentals.json", list);
+        SelectedRental = new Rental();
+        SelectedCustomer = null;
+        NewRentalDate = DateTimeOffset.Now;
+        NewDueDate = DateTimeOffset.Now.AddDays(7);
         LoadData();
     }
 }

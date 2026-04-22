@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using sport_rent.Services;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace sport_rent.ViewModels;
 
