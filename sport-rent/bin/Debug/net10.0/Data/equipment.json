@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "Id": 1,
+    "Name": "Bataleon ",
+    "Category": "Snowboard",
+    "DailyRate": 1,
+    "DepositAmount": 2,
+    "Quantity": 2,
+    "Condition": "Good",
+    "ImagePath": "images/equipment/Screenshot 2026-04-22 at 11.56.25.png",
+    "CreatedAt": "2026-04-23T00:21:02.619192+03:00"
+  },
+  {
+    "Id": 2,
+    "Name": "Helmet",
+    "Category": "Snowboard",
+    "DailyRate": 300,
+    "DepositAmount": 150,
+    "Quantity": 0,
+    "Condition": "Good",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:53:55.76098+03:00"
+  }
+]

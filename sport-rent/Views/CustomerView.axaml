@@ -1,22 +1,89 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:svc="clr-namespace:sport_rent.Services"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
              x:DataType="vm:CustomerViewModel"
              x:Class="sport_rent.Views.CustomerView">
 
-    <Grid RowDefinitions="Auto,*,Auto">
-        <StackPanel Orientation="Horizontal" Spacing="15" Margin="0,0,0,20">
-            <TextBox Text="{Binding SearchText}" Watermark="🔍 Пошук клієнта" Width="400" Height="45"/>
-            <Button Content="Додати клієнта" Command="{Binding SaveCustomerCommand}" Height="45"/>
+    <Grid ColumnDefinitions="*,340" RowDefinitions="Auto,Auto,*">
+
+        <TextBlock Classes="h1" Text="{Binding Loc[CustomersTitle]}"
+                   Grid.ColumnSpan="2" Margin="0,0,0,14"/>
+
+        <!-- Search bar -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12" Margin="0,0,0,12">
+            <controls:FloatingLabelBox Text="{Binding SearchText}"
+                                       Label="{Binding Loc[SearchCustomerWatermark]}"
+                                       Width="360"/>
         </StackPanel>
 
-        <DataGrid ItemsSource="{Binding Customers}" 
-                  SelectedItem="{Binding SelectedCustomer}" 
-                  Grid.Row="1"/>
+        <!-- Customers DataGrid + empty state -->
+        <Border Grid.Row="2" Background="{DynamicResource SurfaceBg}"
+                BorderBrush="{DynamicResource Border}" BorderThickness="1"
+                CornerRadius="10">
+            <Panel>
+                <DataGrid ItemsSource="{Binding Customers}"
+                          SelectedItem="{Binding SelectedCustomer}"
+                          AutoGenerateColumns="False"
+                          CanUserSortColumns="True"
+                          IsReadOnly="True"
+                          x:CompileBindings="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColId], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Id}" Width="60"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColFullName], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColPhone], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Phone}" Width="140"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColPassport], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding PassportNumber}" Width="130"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Spacing="10" Grid.Row="2" Margin="0,15,0,0">
-            <Button Content="Зберегти" Command="{Binding SaveCustomerCommand}" Height="48"/>
-            <Button Content="Видалити" Command="{Binding DeleteCustomerCommand}" Height="48" Background="#EF4444"/>
-        </StackPanel>
+                <TextBlock Text="{Binding Loc[NoData]}"
+                           Foreground="{DynamicResource TextLo}" FontSize="14"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           IsVisible="{Binding HasNoData}"/>
+            </Panel>
+        </Border>
+
+        <!-- Edit form -->
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+                Classes="card" Margin="18,0,0,0">
+            <StackPanel Spacing="12">
+
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Classes="ghost"
+                            Content="{Binding Loc[NewBtn]}"
+                            Command="{Binding NewCustomerCommand}"
+                            Padding="10,4"/>
+                    <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
+                </DockPanel>
+
+                <controls:FloatingLabelBox Text="{Binding SelectedCustomer.FullName}"
+                                           Label="{Binding Loc[FullNameWatermark]}"/>
+
+                <controls:FloatingLabelBox Text="{Binding SelectedCustomer.Phone}"
+                                           Label="{Binding Loc[PhoneWatermark]}"/>
+
+                <controls:FloatingLabelBox Text="{Binding SelectedCustomer.PassportNumber}"
+                                           Label="{Binding Loc[PassportWatermark]}"/>
+
+                <TextBlock Text="{Binding ValidationError}"
+                           Classes="danger"
+                           IsVisible="{Binding ValidationError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                           TextWrapping="Wrap"/>
+
+                <Grid ColumnDefinitions="*,8,*" Margin="0,4,0,0">
+                    <Button Classes="primary" Grid.Column="0"
+                            Content="{Binding Loc[SaveBtn]}"
+                            Command="{Binding SaveCustomerCommand}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                    <Button Classes="danger" Grid.Column="2"
+                            Content="{Binding Loc[DeleteBtn]}"
+                            Command="{Binding DeleteCustomerCommand}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

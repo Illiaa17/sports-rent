@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:sport_rent.Controls">
+
+    <ControlTheme x:Key="{x:Type controls:FloatingLabelBox}" TargetType="controls:FloatingLabelBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Spacing="2">
+                    <TextBlock Name="PART_Float"
+                               FontSize="11"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource TextLo}"
+                               Text="{TemplateBinding Label}"
+                               Opacity="0"
+                               IsHitTestVisible="False"
+                               Height="14"/>
+                    <TextBox Name="PART_Box"
+                             Text="{TemplateBinding Text, Mode=TwoWay}"
+                             Watermark="{TemplateBinding Label}"
+                             PasswordChar="{TemplateBinding PasswordChar}"
+                             CornerRadius="8"
+                             Padding="12,8"
+                             MinHeight="38"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^ /template/ TextBlock#PART_Float">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="^:hastext /template/ TextBlock#PART_Float">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+
+        <Style Selector="^:focus-within /template/ TextBlock#PART_Float">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

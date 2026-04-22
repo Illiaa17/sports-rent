@@ -4,30 +4,40 @@
              x:DataType="vm:DashboardViewModel"
              x:Class="sport_rent.Views.DashboardView">
 
-    <StackPanel Spacing="30">
-        <TextBlock Text="Головна панель" FontSize="32" FontWeight="Bold" Foreground="White"/>
+    <ScrollViewer>
+        <StackPanel Spacing="28">
+            <TextBlock Classes="h1" Text="{Binding Loc[DashboardTitle]}"/>
 
-        <WrapPanel>
-            <Border Background="#1E2937" CornerRadius="12" Padding="30" Width="280" Margin="0,0,20,20">
-                <StackPanel>
-                    <TextBlock Text="Усього спорядження" FontSize="16" Foreground="#94A3B8"/>
-                    <TextBlock Text="{Binding TotalEquipment}" FontSize="48" FontWeight="Bold" Foreground="#22C55E"/>
-                </StackPanel>
-            </Border>
+            <WrapPanel>
+                <Border Classes="stat">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{Binding Loc[TotalEquipmentLabel]}" FontSize="13" Foreground="{DynamicResource TextLo}"/>
+                        <TextBlock Text="{Binding TotalEquipment}" FontSize="44" FontWeight="Bold" Foreground="{DynamicResource Accent}"/>
+                    </StackPanel>
+                </Border>
 
-            <Border Background="#1E2937" CornerRadius="12" Padding="30" Width="280" Margin="0,0,20,20">
-                <StackPanel>
-                    <TextBlock Text="Активних оренд" FontSize="16" Foreground="#94A3B8"/>
-                    <TextBlock Text="{Binding ActiveRentals}" FontSize="48" FontWeight="Bold" Foreground="#EAB308"/>
-                </StackPanel>
-            </Border>
+                <Border Classes="stat">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{Binding Loc[ActiveRentalsLabel]}" FontSize="13" Foreground="{DynamicResource TextLo}"/>
+                        <TextBlock Text="{Binding ActiveRentals}" FontSize="44" FontWeight="Bold" Foreground="{DynamicResource Warning}"/>
+                    </StackPanel>
+                </Border>
 
-            <Border Background="#1E2937" CornerRadius="12" Padding="30" Width="280" Margin="0,0,20,20">
-                <StackPanel>
-                    <TextBlock Text="Клієнтів" FontSize="16" Foreground="#94A3B8"/>
-                    <TextBlock Text="{Binding TotalCustomers}" FontSize="48" FontWeight="Bold" Foreground="#3B82F6"/>
-                </StackPanel>
-            </Border>
-        </WrapPanel>
-    </StackPanel>
+                <Border Classes="stat">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{Binding Loc[TotalCustomersLabel]}" FontSize="13" Foreground="{DynamicResource TextLo}"/>
+                        <TextBlock Text="{Binding TotalCustomers}" FontSize="44" FontWeight="Bold" Foreground="{DynamicResource Info}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Classes="stat">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{Binding Loc[TodayRevenueLabel]}" FontSize="13" Foreground="{DynamicResource TextLo}"/>
+                        <TextBlock Text="{Binding TodayRevenue, StringFormat={}{0:F2}}"
+                                   FontSize="38" FontWeight="Bold" Foreground="{DynamicResource Accent}"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

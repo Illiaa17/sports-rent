@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace sport_rent.Models;
 
 public class RentalItem
@@ -10,5 +12,5 @@ public class RentalItem
     public int Days { get; set; }
     public decimal Subtotal { get; set; }
 
-    public Equipment? Equipment { get; set; }
+    [JsonIgnore] public Equipment? Equipment { get; set; }
 }

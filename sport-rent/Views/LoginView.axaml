@@ -1,50 +1,55 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
              x:DataType="vm:LoginViewModel"
              x:Class="sport_rent.Views.LoginView">
 
-    <Grid Background="#0F172A">
-        <StackPanel Spacing="30" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
-            
-            <TextBlock Text=" SportRent" 
-                       FontSize="48" 
-                       FontWeight="Bold" 
-                       Foreground="#22C55E" 
-                       HorizontalAlignment="Center" />
+    <Grid Background="{DynamicResource PrimaryBg}">
+        <Border Classes="card" Width="420"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Padding="36">
+            <StackPanel Spacing="22">
 
-            <TextBlock Text="Автоматизація пункту прокату" 
-                       FontSize="18" 
-                       Foreground="#94A3B8" 
-                       HorizontalAlignment="Center" />
+                <StackPanel Spacing="6" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Loc[AppTitle]}"
+                               FontSize="36" FontWeight="Bold"
+                               Foreground="{DynamicResource Accent}"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Loc[AppSubtitle]}"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextLo}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
 
-            <StackPanel Spacing="18" Margin="0,20,0,0">
-                <TextBox Text="{Binding LoginName}"
-                         Watermark="Логін" 
-                         Height="52" FontSize="16"/>
+                <StackPanel Spacing="14">
+                    <controls:FloatingLabelBox Text="{Binding LoginName}"
+                                               Label="{Binding Loc[LoginWatermark]}"/>
+                    <controls:FloatingLabelBox Text="{Binding Password}"
+                                               Label="{Binding Loc[PasswordWatermark]}"
+                                               PasswordChar="●"/>
 
-                <TextBox Text="{Binding Password}" 
-                         Watermark="Пароль" 
-                         PasswordChar="●" 
-                         Height="52" FontSize="16"/>
+                    <Button Classes="primary"
+                            Content="{Binding Loc[LoginBtn]}"
+                            Command="{Binding LoginCommand}"
+                            Height="46" FontSize="15"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
 
-                <Button Content="Увійти" 
-                        Command="{Binding LoginCommand}" 
-                        Height="56" 
-                        FontSize="18" 
-                        Background="#22C55E" 
-                        Foreground="White"/>
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Classes="danger"
+                               HorizontalAlignment="Center" FontSize="13"
+                               IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                </StackPanel>
 
-                <TextBlock Text="{Binding ErrorMessage}" 
-                           Foreground="#EF4444" 
-                           HorizontalAlignment="Center" 
-                           FontSize="14"/>
+                <Border Background="{DynamicResource SurfaceAlt}"
+                        CornerRadius="8" Padding="10,6"
+                        HorizontalAlignment="Center">
+                    <TextBlock Text="admin / admin123"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextLo}"/>
+                </Border>
             </StackPanel>
-
-            <TextBlock Text="admin / admin123" 
-                       Foreground="#64748B" 
-                       FontSize="13" 
-                       HorizontalAlignment="Center"/>
-        </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

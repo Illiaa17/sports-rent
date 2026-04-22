@@ -1,1 +1,55 @@
-[]
+[
+  {
+    "Id": 1,
+    "CustomerId": 1,
+    "UserId": 0,
+    "RentalDate": "2026-04-23T00:00:00",
+    "DueDate": "2026-04-30T00:00:00",
+    "ReturnDate": "2026-04-23T00:00:00",
+    "Status": "Returned",
+    "TotalAmount": 1,
+    "DepositPaid": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 1,
+        "Quantity": 1,
+        "DailyRate": 1,
+        "Days": 1,
+        "Subtotal": 1
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "CustomerId": 1,
+    "UserId": 0,
+    "RentalDate": "2026-04-23T00:58:18.793411",
+    "DueDate": "2026-04-30T00:58:18.793414",
+    "ReturnDate": null,
+    "Status": "Active",
+    "TotalAmount": 1203,
+    "DepositPaid": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 1,
+        "Quantity": 3,
+        "DailyRate": 1,
+        "Days": 1,
+        "Subtotal": 3
+      },
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 2,
+        "Quantity": 4,
+        "DailyRate": 300,
+        "Days": 1,
+        "Subtotal": 1200
+      }
+    ]
+  }
+]

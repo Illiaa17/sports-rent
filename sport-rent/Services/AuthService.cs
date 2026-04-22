@@ -5,8 +5,11 @@ namespace sport_rent.Services;
 
 public class AuthService
 {
+    public static AuthService Instance { get; } = new();
+
     private readonly JsonDataService _dataService = new();
     public User? CurrentUser { get; private set; }
+    public bool IsAdmin => CurrentUser?.Role == "Admin";
 
     public bool Login(string login, string password)
     {
@@ -19,7 +22,4 @@ public class AuthService
         }
         return false;
     }
-
-    public bool IsAdmin => CurrentUser?.Role == "Admin";
 }
-

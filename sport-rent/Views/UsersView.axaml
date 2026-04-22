@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:svc="clr-namespace:sport_rent.Services"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
+             x:DataType="vm:UsersViewModel"
+             x:Class="sport_rent.Views.UsersView">
+
+    <Grid ColumnDefinitions="*,340" RowDefinitions="Auto,*">
+        <TextBlock Classes="h1" Text="{Binding Loc[UsersTitle]}"
+                   Grid.ColumnSpan="2" Margin="0,0,0,14"/>
+
+        <!-- Users list -->
+        <Border Grid.Row="1" Background="{DynamicResource SurfaceBg}"
+                BorderBrush="{DynamicResource Border}" BorderThickness="1"
+                CornerRadius="10">
+            <Panel>
+                <DataGrid ItemsSource="{Binding Users}"
+                          SelectedItem="{Binding SelectedUser}"
+                          AutoGenerateColumns="False"
+                          CanUserSortColumns="True"
+                          IsReadOnly="True"
+                          x:CompileBindings="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColId], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Id}" Width="60"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColLogin], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Login}" Width="160"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColFullName], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColRole], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Role}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock Text="{Binding Loc[NoData]}"
+                           Foreground="{DynamicResource TextLo}" FontSize="14"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           IsVisible="{Binding HasNoData}"/>
+            </Panel>
+        </Border>
+
+        <!-- Edit form -->
+        <Border Grid.Column="1" Grid.Row="1"
+                Classes="card" Margin="18,0,0,0">
+            <StackPanel Spacing="12">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Classes="ghost"
+                            Content="{Binding Loc[NewBtn]}"
+                            Command="{Binding NewUserCommand}"
+                            Padding="10,4"/>
+                    <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
+                </DockPanel>
+
+                <controls:FloatingLabelBox Text="{Binding SelectedUser.Login}"
+                                           Label="{Binding Loc[LoginFieldWatermark]}"/>
+                <controls:FloatingLabelBox Text="{Binding SelectedUser.FullName}"
+                                           Label="{Binding Loc[FullNameWatermark]}"/>
+
+                <TextBlock Text="{Binding Loc[RoleLabel]}" Classes="muted" FontSize="12"/>
+                <ComboBox ItemsSource="{Binding Roles}"
+                          SelectedItem="{Binding SelectedUser.Role}"
+                          HorizontalAlignment="Stretch"/>
+
+                <controls:FloatingLabelBox Text="{Binding NewPassword}"
+                                           Label="{Binding Loc[NewPasswordWatermark]}"
+                                           PasswordChar="●"/>
+
+                <TextBlock Text="{Binding ValidationError}"
+                           Classes="danger"
+                           IsVisible="{Binding ValidationError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                           TextWrapping="Wrap"/>
+
+                <Grid ColumnDefinitions="*,8,*" Margin="0,4,0,0">
+                    <Button Classes="primary" Grid.Column="0"
+                            Content="{Binding Loc[SaveBtn]}"
+                            Command="{Binding SaveUserCommand}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                    <Button Classes="danger" Grid.Column="2"
+                            Content="{Binding Loc[DeleteBtn]}"
+                            Command="{Binding DeleteUserCommand}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

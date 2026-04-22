@@ -1,85 +1,196 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:svc="clr-namespace:sport_rent.Services"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
              x:DataType="vm:RentalViewModel"
              x:Class="sport_rent.Views.RentalView">
 
     <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="Нова оренда / Список оренд" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+        <TextBlock Classes="h1" Text="{Binding Loc[RentalsTitle]}" Margin="0,0,0,12"/>
 
         <TabControl Grid.Row="1">
-            <TabItem Header="Активні оренди">
-                <DataGrid ItemsSource="{Binding Rentals}"/>
+
+            <!-- Tab 1: All Rentals -->
+            <TabItem Header="{Binding Loc[AllRentalsTab]}">
+                <Grid RowDefinitions="Auto,*,Auto" Margin="0,12,0,0">
+
+                    <!-- Filters toolbar -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12" Margin="0,0,0,10">
+                        <controls:FloatingLabelBox Text="{Binding SearchText}"
+                                                   Label="{Binding Loc[SearchRentalWatermark]}"
+                                                   Width="300"/>
+
+                        <TextBlock Text="{Binding Loc[StatusFilterLabel]}" VerticalAlignment="Center" Foreground="{DynamicResource TextLo}"/>
+                        <ComboBox ItemsSource="{Binding StatusFilters}"
+                                  SelectedItem="{Binding SelectedStatus}"
+                                  Width="130" Height="40"
+                                  VerticalAlignment="Center"/>
+
+                        <Button Classes="ghost"
+                                Content="{Binding Loc[ExportRentalsCsvBtn]}"
+                                Command="{Binding ExportCsvCommand}"
+                                Height="40"
+                                VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Rentals DataGrid -->
+                    <Border Grid.Row="1" Background="{DynamicResource SurfaceBg}"
+                            BorderBrush="{DynamicResource Border}" BorderThickness="1"
+                            CornerRadius="10">
+                        <Panel>
+                            <DataGrid ItemsSource="{Binding PagedRentals}"
+                                      AutoGenerateColumns="False"
+                                      CanUserSortColumns="True"
+                                      IsReadOnly="True"
+                                      x:CompileBindings="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColId], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Id}" Width="60"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColCustomer], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Customer.FullName}" Width="140"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColEquipment], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding ItemsSummary}" Width="*"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColRentalDate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding RentalDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColDueDate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DueDate, StringFormat={}{0:dd.MM.yyyy}}" Width="100"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColReturnDate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding ReturnDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColStatus], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Status}" Width="100"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColTotal], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding TotalAmount, StringFormat={}{0:F2}}" Width="110"/>
+                                    <DataGridTemplateColumn Header="{ReflectionBinding [ColAction], Source={x:Static svc:LocalizationService.Instance}}" Width="120">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Classes="primary"
+                                                        Content="{ReflectionBinding [ReturnBtn], Source={x:Static svc:LocalizationService.Instance}}"
+                                                        Command="{ReflectionBinding $parent[UserControl].DataContext.ReturnRentalCommand}"
+                                                        CommandParameter="{Binding .}"
+                                                        Padding="10,4"
+                                                        FontSize="12"
+                                                        Margin="4,2"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <TextBlock Text="{Binding Loc[NoData]}"
+                                       Foreground="{DynamicResource TextLo}" FontSize="14"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       IsVisible="{Binding HasNoData}"/>
+                        </Panel>
+                    </Border>
+
+                    <!-- Pagination -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,12,0,0" VerticalAlignment="Center">
+                        <Button Classes="ghost icon-btn" Command="{Binding PrevPageCommand}"
+                                ToolTip.Tip="{Binding Loc[PrevPage]}">
+                            <PathIcon Data="M 7 2 L 2 8 L 7 14" Width="10" Height="14"/>
+                        </Button>
+                        <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource TextLo}" MinWidth="80" TextAlignment="Center">
+                            <Run Text="{Binding Loc[PageLabel]}"/><Run Text=" "/><Run Text="{Binding CurrentPage}"/><Run Text=" "/><Run Text="{Binding Loc[OfLabel]}"/><Run Text=" "/><Run Text="{Binding TotalPages}"/>
+                        </TextBlock>
+                        <Button Classes="ghost icon-btn" Command="{Binding NextPageCommand}"
+                                ToolTip.Tip="{Binding Loc[NextPage]}">
+                            <PathIcon Data="M 2 2 L 7 8 L 2 14" Width="10" Height="14"/>
+                        </Button>
+                        <TextBlock Text="{Binding Loc[PageSizeLabel]}" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="{DynamicResource TextLo}"/>
+                        <ComboBox ItemsSource="{Binding PageSizes}" SelectedItem="{Binding PageSize}" Width="74" Height="32" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
-            <TabItem Header="Оформити нову оренду">
+
+            <!-- Tab 2: New Rental -->
+            <TabItem Header="{Binding Loc[NewRentalTab]}">
                 <ScrollViewer>
-                    <StackPanel Margin="16" Spacing="12">
-                        <TextBlock Text="Клієнт" FontWeight="SemiBold"/>
-                        <ComboBox ItemsSource="{Binding Customers}"
-                                  SelectedItem="{Binding SelectedCustomer}"
-                                  HorizontalAlignment="Stretch">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding FullName}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                    <Border Classes="card" Margin="0,14,0,0" MaxWidth="820" HorizontalAlignment="Left">
+                        <StackPanel Spacing="14">
 
-                        <Grid ColumnDefinitions="*,16,*">
-                            <StackPanel>
-                                <TextBlock Text="Дата оренди"/>
-                                <DatePicker SelectedDate="{Binding NewRentalDate}" HorizontalAlignment="Stretch"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="2">
-                                <TextBlock Text="Дата повернення"/>
-                                <DatePicker SelectedDate="{Binding NewDueDate}" HorizontalAlignment="Stretch"/>
-                            </StackPanel>
-                        </Grid>
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" Classes="ghost"
+                                        Content="{Binding Loc[ClearBtn]}"
+                                        Command="{Binding NewRentalCommand}"
+                                        Padding="10,4"/>
+                                <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
+                            </DockPanel>
 
-                        <Separator Margin="0,4"/>
-
-                        <TextBlock Text="Додати позицію" FontWeight="SemiBold"/>
-                        <Grid ColumnDefinitions="*,12,100,12,100,12,Auto">
-                            <ComboBox Grid.Column="0"
-                                      ItemsSource="{Binding EquipmentList}"
-                                      SelectedItem="{Binding SelectedEquipmentItem}"
+                            <TextBlock Classes="muted" Text="{Binding Loc[CustomerLabel]}" FontSize="12"/>
+                            <ComboBox ItemsSource="{Binding Customers}"
+                                      SelectedItem="{Binding SelectedCustomer}"
                                       HorizontalAlignment="Stretch">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding FullName}"/>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <StackPanel Grid.Column="2">
-                                <TextBlock Text="Кількість" FontSize="11"/>
-                                <NumericUpDown Value="{Binding NewItemQuantity}" Minimum="1" FormatString="0"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="4">
-                                <TextBlock Text="Днів" FontSize="11"/>
-                                <NumericUpDown Value="{Binding NewItemDays}" Minimum="1" FormatString="0"/>
-                            </StackPanel>
-                            <Button Grid.Column="6" Content="Додати" Command="{Binding AddRentalItemCommand}"
-                                    VerticalAlignment="Bottom" Padding="12,6"/>
-                        </Grid>
 
-                        <DataGrid ItemsSource="{Binding SelectedRental.Items}"
-                                  AutoGenerateColumns="False"
-                                  CanUserReorderColumns="False"
-                                  CanUserResizeColumns="True"
-                                  IsReadOnly="True"
-                                  Height="180">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Спорядження ID" Binding="{Binding EquipmentId}" Width="120"/>
-                                <DataGridTextColumn Header="К-ть" Binding="{Binding Quantity}" Width="60"/>
-                                <DataGridTextColumn Header="Днів" Binding="{Binding Days}" Width="60"/>
-                                <DataGridTextColumn Header="Ставка" Binding="{Binding DailyRate, StringFormat={}{0:F2}}" Width="80"/>
-                                <DataGridTextColumn Header="Підсумок" Binding="{Binding Subtotal, StringFormat={}{0:F2}}" Width="90"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                            <Grid ColumnDefinitions="*,16,*">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Classes="muted" Text="{Binding Loc[RentalDateLabel]}" FontSize="12"/>
+                                    <DatePicker SelectedDate="{Binding NewRentalDate}" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Spacing="4">
+                                    <TextBlock Classes="muted" Text="{Binding Loc[DueDateLabel]}" FontSize="12"/>
+                                    <DatePicker SelectedDate="{Binding NewDueDate}" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                            </Grid>
 
-                        <Button Content="Зберегти оренду" Command="{Binding SaveRentalCommand}"
-                                HorizontalAlignment="Right" Padding="16,8"/>
-                    </StackPanel>
+                            <Separator Background="{DynamicResource Border}" Margin="0,4"/>
+
+                            <TextBlock Classes="h2" Text="{Binding Loc[AddItemSection]}"/>
+                            <Grid ColumnDefinitions="*,12,110,12,100,12,Auto">
+                                <ComboBox Grid.Column="0"
+                                          ItemsSource="{Binding EquipmentList}"
+                                          SelectedItem="{Binding SelectedEquipmentItem}"
+                                          HorizontalAlignment="Stretch">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <TextBlock Text="{Binding Name}"/>
+                                                <TextBlock Text="{Binding Quantity, StringFormat='(qty: {0})'}"
+                                                           Foreground="{DynamicResource TextLo}" FontSize="12"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <StackPanel Grid.Column="2" Spacing="4">
+                                    <TextBlock Classes="muted" Text="{Binding Loc[QuantityLabel]}" FontSize="11"/>
+                                    <NumericUpDown Value="{Binding NewItemQuantity}" Minimum="1" FormatString="0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="4" Spacing="4">
+                                    <TextBlock Classes="muted" Text="{Binding Loc[DaysLabel]}" FontSize="11"/>
+                                    <NumericUpDown Value="{Binding NewItemDays}" Minimum="1" FormatString="0"/>
+                                </StackPanel>
+                                <Button Grid.Column="6" Classes="primary"
+                                        Content="{Binding Loc[AddItemBtn]}"
+                                        Command="{Binding AddRentalItemCommand}"
+                                        VerticalAlignment="Bottom"/>
+                            </Grid>
+
+                            <TextBlock Classes="muted" Text="{Binding Loc[RentalItemsHeader]}" FontSize="12" Margin="0,6,0,0"/>
+                            <DataGrid ItemsSource="{Binding CurrentItems}"
+                                      AutoGenerateColumns="False"
+                                      CanUserReorderColumns="False"
+                                      IsReadOnly="True"
+                                      Height="160"
+                                      x:CompileBindings="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColEquipment], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Equipment.Name}" Width="*"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColQty], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Quantity}" Width="70"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColDays], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Days}" Width="70"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColRate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DailyRate, StringFormat={}{0:F2}}" Width="90"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColSubtotal], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Subtotal, StringFormat={}{0:F2}}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <TextBlock Text="{Binding ValidationError}"
+                                       Classes="danger"
+                                       IsVisible="{Binding ValidationError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                       TextWrapping="Wrap"/>
+
+                            <Button Classes="primary"
+                                    Content="{Binding Loc[SaveRentalBtn]}"
+                                    Command="{Binding SaveRentalCommand}"
+                                    HorizontalAlignment="Right"
+                                    Padding="20,10"/>
+                        </StackPanel>
+                    </Border>
                 </ScrollViewer>
             </TabItem>
         </TabControl>

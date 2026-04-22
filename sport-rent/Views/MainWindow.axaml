@@ -1,11 +1,12 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:sport_rent.Views"
-        Title="SportRent - Система прокату" 
-        Width="1200" 
-        Height="700"
+        Title="SportRent"
+        Width="1280"
+        Height="760"
         WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource PrimaryBg}"
         x:Class="sport_rent.Views.MainWindow">
 
-    <views:MainView />
+    <views:MainView/>
 </Window>

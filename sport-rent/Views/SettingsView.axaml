@@ -4,22 +4,48 @@
              x:DataType="vm:SettingsViewModel"
              x:Class="sport_rent.Views.SettingsView">
 
-    <StackPanel Spacing="25" Margin="40">
-        <TextBlock Text="Налаштування" FontSize="32" FontWeight="Bold"/>
+    <ScrollViewer>
+        <StackPanel Spacing="20" Margin="0,0,0,30" MaxWidth="640" HorizontalAlignment="Left">
+            <TextBlock Classes="h1" Text="{Binding Loc[SettingsTitle]}"/>
 
-        <Border BorderThickness="1" CornerRadius="6" Padding="16">
-            <StackPanel Spacing="10">
-                <TextBlock Text="Мова інтерфейсу" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,4"/>
-                <Button Content="Українська" Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
-                <Button Content="English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
-            </StackPanel>
-        </Border>
+            <!-- Language -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="h2" Text="{Binding Loc[LanguageSection]}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Button Classes="primary" Content="Українська"
+                                Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
+                        <Button Classes="ghost" Content="English"
+                                Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
 
-        <Border BorderThickness="1" CornerRadius="6" Padding="16">
-            <StackPanel Spacing="10">
-                <TextBlock Text="Тема" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,4"/>
-                <Button Content="Перемкнути тему (Light/Dark)" Command="{Binding ToggleThemeCommand}"/>
-            </StackPanel>
-        </Border>
-    </StackPanel>
+            <!-- Theme -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="h2" Text="{Binding Loc[ThemeSection]}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Button Classes="primary"
+                                Content="{Binding Loc[ToggleThemeBtn]}"
+                                Command="{Binding ToggleThemeCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Fine system -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="h2" Text="{Binding Loc[FineSection]}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Loc[FinePerDayLabel]}" VerticalAlignment="Center" Foreground="{DynamicResource TextLo}"/>
+                        <NumericUpDown Value="{Binding FinePerDay}"
+                                       Minimum="0" Maximum="10000"
+                                       FormatString="F2"
+                                       Width="160"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

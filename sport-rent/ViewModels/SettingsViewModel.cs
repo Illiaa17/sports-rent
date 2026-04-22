@@ -9,13 +9,20 @@ namespace sport_rent.ViewModels;
 public partial class SettingsViewModel : BaseViewModel
 {
     [ObservableProperty] private string currentLanguage = LocalizationService.Instance.CurrentLang;
+    [ObservableProperty] private decimal finePerDay = SettingsService.Instance.Settings.FinePerDay;
+
+    partial void OnFinePerDayChanged(decimal value)
+    {
+        SettingsService.Instance.Settings.FinePerDay = value;
+        SettingsService.Instance.Save();
+    }
 
     [RelayCommand]
     private void ChangeLanguage(string lang)
     {
         LocalizationService.Instance.CurrentLang = lang;
         CurrentLanguage = lang;
-        // Оновлення UI відбувається через подію
+        SettingsService.Instance.Save();
     }
 
     [RelayCommand]
@@ -23,8 +30,11 @@ public partial class SettingsViewModel : BaseViewModel
     {
         var app = Application.Current;
         if (app == null) return;
-        app.RequestedThemeVariant = app.RequestedThemeVariant == ThemeVariant.Dark
+        var next = app.RequestedThemeVariant == ThemeVariant.Dark
             ? ThemeVariant.Light
             : ThemeVariant.Dark;
+        app.RequestedThemeVariant = next;
+        SettingsService.Instance.Settings.Theme = next == ThemeVariant.Dark ? "Dark" : "Light";
+        SettingsService.Instance.Save();
     }
 }

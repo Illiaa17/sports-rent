@@ -1,24 +1,150 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:svc="clr-namespace:sport_rent.Services"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
              x:DataType="vm:EquipmentViewModel"
              x:Class="sport_rent.Views.EquipmentView">
 
-    <Grid RowDefinitions="Auto,*,Auto">
-        <StackPanel Orientation="Horizontal" Spacing="15" Margin="0,0,0,20">
-            <TextBox Text="{Binding SearchText}" Watermark="🔍 Пошук по назві або категорії" Width="400" Height="45"/>
-            <Button Content="Додати спорядження" Command="{Binding SaveEquipmentCommand}" Height="45"/>
+    <Grid ColumnDefinitions="*,360" RowDefinitions="Auto,Auto,*,Auto">
+
+        <TextBlock Classes="h1" Text="{Binding Loc[EquipmentTitle]}"
+                   Grid.ColumnSpan="2" Margin="0,0,0,14"/>
+
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,0,0,12">
+            <controls:FloatingLabelBox Text="{Binding SearchText}"
+                                       Label="{Binding Loc[SearchEquipmentWatermark]}"
+                                       Width="360"/>
+            <Button Classes="ghost"
+                    Content="{Binding Loc[ExportCsvBtn]}"
+                    Command="{Binding ExportCsvCommand}"
+                    Height="40"
+                    VerticalAlignment="Center"/>
         </StackPanel>
 
-        <DataGrid ItemsSource="{Binding EquipmentList}" 
-                  SelectedItem="{Binding SelectedEquipment}" 
-                  Grid.Row="1" 
-                  AutoGenerateColumns="True"
-                  IsReadOnly="False"/>
+        <!-- Equipment DataGrid + empty state -->
+        <Border Grid.Row="2" Background="{DynamicResource SurfaceBg}"
+                BorderBrush="{DynamicResource Border}" BorderThickness="1"
+                CornerRadius="10">
+            <Panel>
+                <DataGrid ItemsSource="{Binding PagedEquipment}"
+                          SelectedItem="{Binding SelectedEquipment}"
+                          AutoGenerateColumns="False"
+                          CanUserSortColumns="True"
+                          IsReadOnly="True"
+                          x:CompileBindings="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColId], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Id}" Width="60"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColName], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColCategory], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Category}" Width="140"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColDailyRate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DailyRate, StringFormat={}{0:F2}}" Width="100"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColDeposit], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DepositAmount, StringFormat={}{0:F2}}" Width="100"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColQty], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Quantity}" Width="70"/>
+                        <DataGridTextColumn Header="{ReflectionBinding [ColCondition], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Condition}" Width="110"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Spacing="10" Grid.Row="2" Margin="0,15,0,0">
-            <Button Content="Зберегти" Command="{Binding SaveEquipmentCommand}" Height="48"/>
-            <Button Content="Видалити" Command="{Binding DeleteEquipmentCommand}" Height="48" Background="#EF4444"/>
+                <TextBlock Text="{Binding Loc[NoData]}"
+                           Foreground="{DynamicResource TextLo}" FontSize="14"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           IsVisible="{Binding HasNoData}"/>
+            </Panel>
+        </Border>
+
+        <!-- Pagination -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="8" Margin="0,12,0,0" VerticalAlignment="Center">
+            <Button Classes="ghost icon-btn" Command="{Binding PrevPageCommand}"
+                    ToolTip.Tip="{Binding Loc[PrevPage]}">
+                <PathIcon Data="M 7 2 L 2 8 L 7 14" Width="10" Height="14"/>
+            </Button>
+            <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource TextLo}" MinWidth="80" TextAlignment="Center">
+                <Run Text="{Binding Loc[PageLabel]}"/><Run Text=" "/><Run Text="{Binding CurrentPage}"/><Run Text=" "/><Run Text="{Binding Loc[OfLabel]}"/><Run Text=" "/><Run Text="{Binding TotalPages}"/>
+            </TextBlock>
+            <Button Classes="ghost icon-btn" Command="{Binding NextPageCommand}"
+                    ToolTip.Tip="{Binding Loc[NextPage]}">
+                <PathIcon Data="M 2 2 L 7 8 L 2 14" Width="10" Height="14"/>
+            </Button>
+            <TextBlock Text="{Binding Loc[PageSizeLabel]}" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="{DynamicResource TextLo}"/>
+            <ComboBox ItemsSource="{Binding PageSizes}" SelectedItem="{Binding PageSize}" Width="74" Height="32" VerticalAlignment="Center"/>
         </StackPanel>
+
+        <!-- Edit form -->
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="3"
+                Classes="card" Margin="18,0,0,0">
+            <ScrollViewer>
+                <StackPanel Spacing="12">
+
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Classes="ghost"
+                                Content="{Binding Loc[NewBtn]}"
+                                Command="{Binding NewEquipmentCommand}"
+                                Padding="10,4"/>
+                        <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <controls:FloatingLabelBox Text="{Binding SelectedEquipment.Name}"
+                                               Label="{Binding Loc[NameWatermark]}"/>
+                    <StackPanel Spacing="4">
+                        <TextBlock Classes="muted" FontSize="12" Text="{Binding Loc[CategoryWatermark]}"/>
+                        <AutoCompleteBox ItemsSource="{Binding CategoryOptions}"
+                                         Text="{Binding SelectedEquipment.Category}"
+                                         FilterMode="Contains"
+                                         MinimumPrefixLength="0"
+                                         HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <Grid ColumnDefinitions="*,8,*">
+                        <controls:FloatingLabelBox Text="{Binding SelectedEquipment.DailyRate}"
+                                                   Label="{Binding Loc[DailyRateWatermark]}"/>
+                        <controls:FloatingLabelBox Grid.Column="2"
+                                                   Text="{Binding SelectedEquipment.DepositAmount}"
+                                                   Label="{Binding Loc[DepositWatermark]}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,8,*">
+                        <controls:FloatingLabelBox Text="{Binding SelectedEquipment.Quantity}"
+                                                   Label="{Binding Loc[QuantityWatermark]}"/>
+                        <StackPanel Grid.Column="2" Spacing="4">
+                            <TextBlock Classes="muted" FontSize="12" Text="{Binding Loc[ConditionWatermark]}"/>
+                            <AutoCompleteBox ItemsSource="{Binding ConditionOptions}"
+                                             Text="{Binding SelectedEquipment.Condition}"
+                                             FilterMode="Contains"
+                                             MinimumPrefixLength="0"
+                                             HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Classes="muted" Text="{Binding Loc[ImageSection]}" FontWeight="SemiBold" Margin="0,4,0,0"/>
+                    <Button Classes="ghost" Content="{Binding Loc[BrowseBtn]}"
+                            x:Name="BrowseButton"
+                            Click="BrowseButton_Click"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                    <Border BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="8"
+                            IsVisible="{Binding SelectedImage, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <Image Source="{Binding SelectedImage}" Height="120" Stretch="UniformToFill"/>
+                    </Border>
+
+                    <TextBlock Text="{Binding ValidationError}"
+                               Classes="danger"
+                               IsVisible="{Binding ValidationError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                               TextWrapping="Wrap"/>
+
+                    <Grid ColumnDefinitions="*,8,*" Margin="0,4,0,0">
+                        <Button Classes="primary" Grid.Column="0"
+                                Content="{Binding Loc[SaveBtn]}"
+                                Command="{Binding SaveEquipmentCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"/>
+                        <Button Classes="danger" Grid.Column="2"
+                                Content="{Binding Loc[DeleteBtn]}"
+                                Command="{Binding DeleteEquipmentCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </UserControl>

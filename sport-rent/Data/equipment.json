@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "Name": "\u0412\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434 \u0433\u0456\u0440\u0441\u044C\u043A\u0438\u0439",
+    "Category": "\u0412\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434\u0438",
+    "DailyRate": 150,
+    "DepositAmount": 1000,
+    "Quantity": 5,
+    "Condition": "\u0412\u0456\u0434\u043C\u0456\u043D\u043D\u0438\u0439",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:19:02.407318+03:00"
+  },
+  {
+    "Id": 2,
+    "Name": "\u041B\u0438\u0436\u0456 \u0433\u0456\u0440\u0441\u044C\u043A\u0456",
+    "Category": "\u041B\u0438\u0436\u043D\u0435 \u0441\u043F\u043E\u0440\u044F\u0434\u0436\u0435\u043D\u043D\u044F",
+    "DailyRate": 200,
+    "DepositAmount": 2000,
+    "Quantity": 4,
+    "Condition": "\u0414\u043E\u0431\u0440\u0438\u0439",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
+  },
+  {
+    "Id": 3,
+    "Name": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434",
+    "Category": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434\u0438\u043D\u0433",
+    "DailyRate": 180,
+    "DepositAmount": 1500,
+    "Quantity": 3,
+    "Condition": "\u0414\u043E\u0431\u0440\u0438\u0439",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
+  },
+  {
+    "Id": 4,
+    "Name": "\u041D\u0430\u043C\u0435\u0442 \u0442\u0443\u0440\u0438\u0441\u0442\u0438\u0447\u043D\u0438\u0439",
+    "Category": "\u041A\u0435\u043C\u043F\u0456\u043D\u0433",
+    "DailyRate": 100,
+    "DepositAmount": 800,
+    "Quantity": 6,
+    "Condition": "\u0412\u0456\u0434\u043C\u0456\u043D\u043D\u0438\u0439",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
+  },
+  {
+    "Id": 5,
+    "Name": "\u0421\u043A\u0435\u0439\u0442\u0431\u043E\u0440\u0434",
+    "Category": "\u0421\u043A\u0435\u0439\u0442\u0438\u043D\u0433",
+    "DailyRate": 80,
+    "DepositAmount": 500,
+    "Quantity": 8,
+    "Condition": "\u0414\u043E\u0431\u0440\u0438\u0439",
+    "ImagePath": "",
+    "CreatedAt": "2026-04-23T00:19:02.407382+03:00"
+  }
+]
