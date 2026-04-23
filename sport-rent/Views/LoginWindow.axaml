@@ -1,0 +1,13 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:sport_rent.Views"
+        x:Class="sport_rent.Views.LoginWindow"
+        Title="SportRent"
+        Width="560"
+        Height="560"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Background="{DynamicResource PrimaryBg}">
+
+    <views:LoginView/>
+</Window>

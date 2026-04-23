@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             x:DataType="vm:MainViewModel"
+             x:Class="sport_rent.Views.MainView">
+
+    <Grid ColumnDefinitions="240,*" Background="{DynamicResource PrimaryBg}">
+
+       
+        <Border Background="{DynamicResource SurfaceBg}"
+                BorderBrush="{DynamicResource Border}"
+                BorderThickness="0,0,1,0"
+                Grid.Column="0">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="14">
+
+                <StackPanel Grid.Row="0" Spacing="4" Margin="8,8,8,20">
+                    <TextBlock Text="{Binding Loc[AppTitle]}"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="{DynamicResource Accent}"/>
+                    <TextBlock Text="{Binding Loc[AppSubtitle]}"
+                               FontSize="11"
+                               Foreground="{DynamicResource TextLo}"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Spacing="4">
+                    <Button Classes="nav" Content="{Binding Loc[Dashboard]}"
+                            Command="{Binding ShowDashboardCommand}"/>
+                    <Button Classes="nav" Content="{Binding Loc[Equipment]}"
+                            Command="{Binding ShowEquipmentCommand}"/>
+                    <Button Classes="nav" Content="{Binding Loc[Customers]}"
+                            Command="{Binding ShowCustomersCommand}"/>
+                    <Button Classes="nav" Content="{Binding Loc[Rentals]}"
+                            Command="{Binding ShowRentalsCommand}"/>
+                    <Button Classes="nav" Content="{Binding Loc[Users]}"
+                            Command="{Binding ShowUsersCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
+                    <Button Classes="nav" Content="{Binding Loc[Settings]}"
+                            Command="{Binding ShowSettingsCommand}"/>
+                </StackPanel>
+
+                <Button Grid.Row="2" Classes="danger"
+                        Content="{Binding Loc[Logout]}"
+                        Command="{Binding LogoutCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"/>
+            </Grid>
+        </Border>
+
+            
+        <ContentControl Content="{Binding CurrentView}"
+                        Grid.Column="1"
+                        Margin="30,24,30,24"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sport-rent" type="DotNetProjectConfiguration" factoryName=".NET Project">
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/sport-rent/sport-rent.csproj" />
+    <option name="TARGET_FRAMEWORK_ID" value=".NETCoreApp,Version=v10.0" />
+    <option name="DOTNET_RUNTIME_ID" value="net10.0" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sport-rent" />
+    <option name="PASS_PARENT_ENVS" value="1" />
+    <method v="2" />
+  </configuration>
+</component>

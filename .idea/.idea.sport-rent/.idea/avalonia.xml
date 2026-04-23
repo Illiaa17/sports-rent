@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="sport-rent/App.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Controls/FloatingLabelBox.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/CustomerView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/DashboardView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/EquipmentView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/LoginView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/LoginWindow.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/MainView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/MainWindow.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/RentalView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/SettingsView.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Views/UsersView.axaml" value="sport-rent/sport-rent.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

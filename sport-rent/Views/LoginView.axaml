@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:sport_rent.ViewModels"
+             xmlns:controls="clr-namespace:sport_rent.Controls"
+             x:DataType="vm:LoginViewModel"
+             x:Class="sport_rent.Views.LoginView">
+
+    <Grid Background="{DynamicResource PrimaryBg}">
+        <Border Classes="card" Width="420"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Padding="36">
+            <StackPanel Spacing="22">
+
+                <StackPanel Spacing="6" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Loc[AppTitle]}"
+                               FontSize="36" FontWeight="Bold"
+                               Foreground="{DynamicResource Accent}"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Loc[AppSubtitle]}"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextLo}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Spacing="14">
+                    <controls:FloatingLabelBox Text="{Binding LoginName}"
+                                               Label="{Binding Loc[LoginWatermark]}"/>
+                    <controls:FloatingLabelBox Text="{Binding Password}"
+                                               Label="{Binding Loc[PasswordWatermark]}"
+                                               PasswordChar="●"/>
+
+                    <Button Classes="primary"
+                            Content="{Binding Loc[LoginBtn]}"
+                            Command="{Binding LoginCommand}"
+                            Height="46" FontSize="15"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Classes="danger"
+                               HorizontalAlignment="Center" FontSize="13"
+                               IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                </StackPanel>
+
+                <Border Background="{DynamicResource SurfaceAlt}"
+                        CornerRadius="8" Padding="10,6"
+                        HorizontalAlignment="Center">
+                    <TextBlock Text="admin / admin123"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextLo}"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
