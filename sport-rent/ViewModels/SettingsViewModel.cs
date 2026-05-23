@@ -9,6 +9,15 @@ namespace sport_rent.ViewModels;
 public partial class SettingsViewModel : BaseViewModel
 {
     [ObservableProperty] private string currentLanguage = LocalizationService.Instance.CurrentLang;
+
+    public bool IsUkSelected => CurrentLanguage == "uk";
+    public bool IsEnSelected => CurrentLanguage == "en";
+
+    partial void OnCurrentLanguageChanged(string value)
+    {
+        OnPropertyChanged(nameof(IsUkSelected));
+        OnPropertyChanged(nameof(IsEnSelected));
+    }
     [ObservableProperty] private decimal finePerDay = SettingsService.Instance.Settings.FinePerDay;
     [ObservableProperty] private decimal damageFinePercent = SettingsService.Instance.Settings.DamageFinePercent;
 

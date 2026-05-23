@@ -98,5 +98,55 @@
         "Subtotal": 180
       }
     ]
+  },
+  {
+    "Id": 5,
+    "CustomerId": 6,
+    "UserId": 0,
+    "RentalDate": "2026-05-24T00:00:00",
+    "DueDate": "2026-05-25T00:00:00",
+    "ReturnDate": null,
+    "Status": "Active",
+    "TotalAmount": 450,
+    "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 1,
+        "Quantity": 3,
+        "DailyRate": 150,
+        "Days": 1,
+        "Subtotal": 450
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "CustomerId": 5,
+    "UserId": 0,
+    "RentalDate": "2026-05-24T00:12:25.156599",
+    "DueDate": "2026-05-31T00:12:25.156885",
+    "ReturnDate": null,
+    "Status": "Active",
+    "TotalAmount": 240,
+    "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 5,
+        "Quantity": 3,
+        "DailyRate": 80,
+        "Days": 1,
+        "Subtotal": 240
+      }
+    ]
   }
 ]

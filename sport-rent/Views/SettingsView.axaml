@@ -13,9 +13,13 @@
                 <StackPanel Spacing="12">
                     <TextBlock Classes="h2" Text="{Binding Loc[LanguageSection]}"/>
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <Button Classes="primary" Content="Українська"
+                        <Button Content="Українська"
+                                Classes.primary="{Binding IsUkSelected}"
+                                Classes.ghost="{Binding IsEnSelected}"
                                 Command="{Binding ChangeLanguageCommand}" CommandParameter="uk"/>
-                        <Button Classes="ghost" Content="English"
+                        <Button Content="English"
+                                Classes.primary="{Binding IsEnSelected}"
+                                Classes.ghost="{Binding IsUkSelected}"
                                 Command="{Binding ChangeLanguageCommand}" CommandParameter="en"/>
                     </StackPanel>
                 </StackPanel>
