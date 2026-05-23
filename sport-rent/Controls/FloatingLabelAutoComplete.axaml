@@ -1,0 +1,48 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:sport_rent.Controls">
+
+    <ControlTheme x:Key="{x:Type controls:FloatingLabelAutoComplete}" TargetType="controls:FloatingLabelAutoComplete">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Spacing="2">
+                    <TextBlock Name="PART_Float"
+                               FontSize="11"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource TextLo}"
+                               Text="{TemplateBinding Label}"
+                               Opacity="0"
+                               IsHitTestVisible="False"
+                               Height="14"/>
+                    <AutoCompleteBox Name="PART_Box"
+                                     Text="{TemplateBinding Text, Mode=TwoWay}"
+                                     ItemsSource="{TemplateBinding ItemsSource}"
+                                     Watermark="{TemplateBinding Label}"
+                                     FilterMode="Contains"
+                                     MinimumPrefixLength="0"
+                                     CornerRadius="8"
+                                     MinHeight="38"
+                                     HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^ /template/ TextBlock#PART_Float">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="^:hastext /template/ TextBlock#PART_Float">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+
+        <Style Selector="^:focus-within /template/ TextBlock#PART_Float">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -27,6 +27,9 @@ build_property.EnableCodeStyleSeverity =
 [/Users/illiapaidych/University/sports-rent/sport-rent/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/Users/illiapaidych/University/sports-rent/sport-rent/Controls/FloatingLabelAutoComplete.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/Users/illiapaidych/University/sports-rent/sport-rent/Controls/FloatingLabelBox.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

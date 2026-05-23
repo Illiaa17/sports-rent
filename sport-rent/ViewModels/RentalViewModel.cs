@@ -228,24 +228,44 @@ public partial class RentalViewModel : BaseViewModel
     [RelayCommand]
     private async Task ReturnRental(Rental rental)
     {
-        if (!await DialogHelper.ConfirmReturnAsync()) return;
+        if (rental.Status == "Returned") return;
 
-        rental.ReturnDate = DateTime.Now;
-        rental.Status = "Returned";
-
-        if (rental.ReturnDate > rental.DueDate)
-        {
-            var overdueDays = (int)Math.Ceiling((rental.ReturnDate.Value - rental.DueDate).TotalDays);
-            rental.TotalAmount += overdueDays * SettingsService.Instance.Settings.FinePerDay;
-        }
-
-        // Restore equipment quantities
         var allEquipment = _dataService.Load<Equipment>("equipment.json");
         foreach (var item in rental.Items)
+            item.Equipment ??= allEquipment.FirstOrDefault(e => e.Id == item.EquipmentId);
+
+        var dialogResult = await DialogHelper.ShowReturnDialogAsync(rental, allEquipment);
+        if (dialogResult is not { Confirmed: true }) return;
+
+        var settings = SettingsService.Instance.Settings;
+        var returnDate = dialogResult.ReturnDate;
+        var baseAmount = FineService.BaseRentalAmount(rental);
+
+        rental.ReturnDate = returnDate;
+        rental.Status = "Returned";
+        rental.OverdueFine = dialogResult.ApplyOverdueFine
+            ? FineService.CalculateOverdueFine(rental.DueDate, returnDate, settings.FinePerDay)
+            : 0m;
+        rental.DamageFine = dialogResult.ApplyDamageFine
+            ? FineService.CalculateDamageFine(
+                rental, dialogResult.DamagedItemIndexes, allEquipment, settings.DamageFinePercent)
+            : 0m;
+        rental.ManualFine = 0m;
+        rental.TotalAmount = baseAmount + rental.OverdueFine + rental.DamageFine;
+
+        var damagedLabel = FineService.DamagedConditionLabel();
+        for (var i = 0; i < rental.Items.Count; i++)
         {
+            var item = rental.Items[i];
             var eq = allEquipment.FirstOrDefault(e => e.Id == item.EquipmentId);
-            if (eq != null) eq.Quantity += item.Quantity;
+            if (eq == null) continue;
+
+            eq.Quantity += item.Quantity;
+
+            if (dialogResult.DamagedItemIndexes.Contains(i))
+                eq.Condition = damagedLabel;
         }
+
         _dataService.Save("equipment.json", allEquipment);
         _dataService.Save("rentals.json", _allRentals);
         LoadData();
@@ -273,10 +293,13 @@ public partial class RentalViewModel : BaseViewModel
             r.DueDate.ToString("yyyy-MM-dd"),
             r.ReturnDate?.ToString("yyyy-MM-dd") ?? string.Empty,
             r.Status,
+            r.OverdueFine.ToString("F2", System.Globalization.CultureInfo.InvariantCulture),
+            r.DamageFine.ToString("F2", System.Globalization.CultureInfo.InvariantCulture),
+            r.ManualFine.ToString("F2", System.Globalization.CultureInfo.InvariantCulture),
             r.TotalAmount.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
         });
         var csv = CsvHelper.BuildCsv(
-            new[] { "ID", "Customer", "RentalDate", "DueDate", "ReturnDate", "Status", "TotalAmount" },
+            new[] { "ID", "Customer", "RentalDate", "DueDate", "ReturnDate", "Status", "OverdueFine", "DamageFine", "ManualFine", "TotalAmount" },
             rows);
         await CsvHelper.SaveCsvAsync("rentals_export.csv", csv);
     }

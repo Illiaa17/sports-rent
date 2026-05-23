@@ -10,10 +10,17 @@ public partial class SettingsViewModel : BaseViewModel
 {
     [ObservableProperty] private string currentLanguage = LocalizationService.Instance.CurrentLang;
     [ObservableProperty] private decimal finePerDay = SettingsService.Instance.Settings.FinePerDay;
+    [ObservableProperty] private decimal damageFinePercent = SettingsService.Instance.Settings.DamageFinePercent;
 
     partial void OnFinePerDayChanged(decimal value)
     {
         SettingsService.Instance.Settings.FinePerDay = value;
+        SettingsService.Instance.Save();
+    }
+
+    partial void OnDamageFinePercentChanged(decimal value)
+    {
+        SettingsService.Instance.Settings.DamageFinePercent = value;
         SettingsService.Instance.Save();
     }
 

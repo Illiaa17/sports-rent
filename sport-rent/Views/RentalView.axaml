@@ -52,6 +52,7 @@
                                     <DataGridTextColumn Header="{ReflectionBinding [ColDueDate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DueDate, StringFormat={}{0:dd.MM.yyyy}}" Width="100"/>
                                     <DataGridTextColumn Header="{ReflectionBinding [ColReturnDate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding ReturnDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
                                     <DataGridTextColumn Header="{ReflectionBinding [ColStatus], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Status}" Width="100"/>
+                                    <DataGridTextColumn Header="{ReflectionBinding [ColFines], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding FinesTotal, StringFormat={}{0:F2}}" Width="90"/>
                                     <DataGridTextColumn Header="{ReflectionBinding [ColTotal], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding TotalAmount, StringFormat={}{0:F2}}" Width="110"/>
                                     <DataGridTemplateColumn Header="{ReflectionBinding [ColAction], Source={x:Static svc:LocalizationService.Instance}}" Width="120">
                                         <DataGridTemplateColumn.CellTemplate>
@@ -60,6 +61,7 @@
                                                         Content="{ReflectionBinding [ReturnBtn], Source={x:Static svc:LocalizationService.Instance}}"
                                                         Command="{ReflectionBinding $parent[UserControl].DataContext.ReturnRentalCommand}"
                                                         CommandParameter="{Binding .}"
+                                                        IsVisible="{Binding CanReturn}"
                                                         Padding="10,4"
                                                         FontSize="12"
                                                         Margin="4,2"/>
@@ -109,24 +111,26 @@
                                 <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
                             </DockPanel>
 
-                            <TextBlock Classes="muted" Text="{Binding Loc[CustomerLabel]}" FontSize="12"/>
-                            <ComboBox ItemsSource="{Binding Customers}"
-                                      SelectedItem="{Binding SelectedCustomer}"
-                                      HorizontalAlignment="Stretch">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding FullName}"/>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <StackPanel Spacing="2">
+                                <TextBlock Classes="form-label" Text="{Binding Loc[CustomerLabel]}"/>
+                                <ComboBox ItemsSource="{Binding Customers}"
+                                          SelectedItem="{Binding SelectedCustomer}"
+                                          HorizontalAlignment="Stretch">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding FullName}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
 
                             <Grid ColumnDefinitions="*,16,*">
-                                <StackPanel Spacing="4">
-                                    <TextBlock Classes="muted" Text="{Binding Loc[RentalDateLabel]}" FontSize="12"/>
+                                <StackPanel Spacing="2">
+                                    <TextBlock Classes="form-label" Text="{Binding Loc[RentalDateLabel]}"/>
                                     <DatePicker SelectedDate="{Binding NewRentalDate}" HorizontalAlignment="Stretch"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="2" Spacing="4">
-                                    <TextBlock Classes="muted" Text="{Binding Loc[DueDateLabel]}" FontSize="12"/>
+                                <StackPanel Grid.Column="2" Spacing="2">
+                                    <TextBlock Classes="form-label" Text="{Binding Loc[DueDateLabel]}"/>
                                     <DatePicker SelectedDate="{Binding NewDueDate}" HorizontalAlignment="Stretch"/>
                                 </StackPanel>
                             </Grid>
@@ -134,8 +138,12 @@
                             <Separator Background="{DynamicResource Border}" Margin="0,4"/>
 
                             <TextBlock Classes="h2" Text="{Binding Loc[AddItemSection]}"/>
-                            <Grid ColumnDefinitions="*,12,110,12,100,12,Auto">
-                                <ComboBox Grid.Column="0"
+                            <Grid ColumnDefinitions="*,12,110,12,100,12,Auto" RowDefinitions="Auto,Auto">
+                                <Border Grid.Row="0" Grid.Column="0" Height="14"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2" Classes="form-label" Text="{Binding Loc[QuantityLabel]}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="4" Classes="form-label" Text="{Binding Loc[DaysLabel]}"/>
+
+                                <ComboBox Grid.Row="1" Grid.Column="0"
                                           ItemsSource="{Binding EquipmentList}"
                                           SelectedItem="{Binding SelectedEquipmentItem}"
                                           HorizontalAlignment="Stretch">
@@ -149,18 +157,15 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <StackPanel Grid.Column="2" Spacing="4">
-                                    <TextBlock Classes="muted" Text="{Binding Loc[QuantityLabel]}" FontSize="11"/>
-                                    <NumericUpDown Value="{Binding NewItemQuantity}" Minimum="1" FormatString="0"/>
-                                </StackPanel>
-                                <StackPanel Grid.Column="4" Spacing="4">
-                                    <TextBlock Classes="muted" Text="{Binding Loc[DaysLabel]}" FontSize="11"/>
-                                    <NumericUpDown Value="{Binding NewItemDays}" Minimum="1" FormatString="0"/>
-                                </StackPanel>
-                                <Button Grid.Column="6" Classes="primary"
+                                <NumericUpDown Grid.Row="1" Grid.Column="2"
+                                               Value="{Binding NewItemQuantity}" Minimum="1" FormatString="0"/>
+                                <NumericUpDown Grid.Row="1" Grid.Column="4"
+                                               Value="{Binding NewItemDays}" Minimum="1" FormatString="0"/>
+                                <Button Grid.Row="1" Grid.Column="6" Classes="primary"
                                         Content="{Binding Loc[AddItemBtn]}"
                                         Command="{Binding AddRentalItemCommand}"
-                                        VerticalAlignment="Bottom"/>
+                                        Height="38"
+                                        VerticalAlignment="Center"/>
                             </Grid>
 
                             <TextBlock Classes="muted" Text="{Binding Loc[RentalItemsHeader]}" FontSize="12" Margin="0,6,0,0"/>

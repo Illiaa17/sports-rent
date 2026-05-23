@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="sport-rent/App.axaml" value="sport-rent/sport-rent.csproj" />
+        <entry key="sport-rent/Controls/FloatingLabelAutoComplete.axaml" value="sport-rent/sport-rent.csproj" />
         <entry key="sport-rent/Controls/FloatingLabelBox.axaml" value="sport-rent/sport-rent.csproj" />
         <entry key="sport-rent/Views/CustomerView.axaml" value="sport-rent/sport-rent.csproj" />
         <entry key="sport-rent/Views/DashboardView.axaml" value="sport-rent/sport-rent.csproj" />

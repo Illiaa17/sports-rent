@@ -53,10 +53,12 @@
                 <controls:FloatingLabelBox Text="{Binding SelectedUser.FullName}"
                                            Label="{Binding Loc[FullNameWatermark]}"/>
 
-                <TextBlock Text="{Binding Loc[RoleLabel]}" Classes="muted" FontSize="12"/>
-                <ComboBox ItemsSource="{Binding Roles}"
-                          SelectedItem="{Binding SelectedUser.Role}"
-                          HorizontalAlignment="Stretch"/>
+                <StackPanel Spacing="2">
+                    <TextBlock Classes="form-label" Text="{Binding Loc[RoleLabel]}"/>
+                    <ComboBox ItemsSource="{Binding Roles}"
+                              SelectedItem="{Binding SelectedUser.Role}"
+                              HorizontalAlignment="Stretch"/>
+                </StackPanel>
 
                 <controls:FloatingLabelBox Text="{Binding NewPassword}"
                                            Label="{Binding Loc[NewPasswordWatermark]}"

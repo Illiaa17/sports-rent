@@ -16,8 +16,17 @@ public class Rental
     public string Status { get; set; } = "Active"; 
     public decimal TotalAmount { get; set; }
     public decimal DepositPaid { get; set; }
+    public decimal OverdueFine { get; set; }
+    public decimal DamageFine { get; set; }
+    public decimal ManualFine { get; set; }
 
     [JsonIgnore] public Customer? Customer { get; set; }
+
+    [JsonIgnore]
+    public decimal FinesTotal => OverdueFine + DamageFine + ManualFine;
+
+    [JsonIgnore]
+    public bool CanReturn => Status is "Active" or "Overdue";
     public List<RentalItem> Items { get; set; } = new();
 
     [JsonIgnore]

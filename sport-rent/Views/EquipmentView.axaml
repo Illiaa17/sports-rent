@@ -85,14 +85,9 @@
 
                     <controls:FloatingLabelBox Text="{Binding SelectedEquipment.Name}"
                                                Label="{Binding Loc[NameWatermark]}"/>
-                    <StackPanel Spacing="4">
-                        <TextBlock Classes="muted" FontSize="12" Text="{Binding Loc[CategoryWatermark]}"/>
-                        <AutoCompleteBox ItemsSource="{Binding CategoryOptions}"
-                                         Text="{Binding SelectedEquipment.Category}"
-                                         FilterMode="Contains"
-                                         MinimumPrefixLength="0"
-                                         HorizontalAlignment="Stretch"/>
-                    </StackPanel>
+                    <controls:FloatingLabelAutoComplete Text="{Binding SelectedEquipment.Category}"
+                                                        ItemsSource="{Binding CategoryOptions}"
+                                                        Label="{Binding Loc[CategoryWatermark]}"/>
 
                     <Grid ColumnDefinitions="*,8,*">
                         <controls:FloatingLabelBox Text="{Binding SelectedEquipment.DailyRate}"
@@ -105,14 +100,10 @@
                     <Grid ColumnDefinitions="*,8,*">
                         <controls:FloatingLabelBox Text="{Binding SelectedEquipment.Quantity}"
                                                    Label="{Binding Loc[QuantityWatermark]}"/>
-                        <StackPanel Grid.Column="2" Spacing="4">
-                            <TextBlock Classes="muted" FontSize="12" Text="{Binding Loc[ConditionWatermark]}"/>
-                            <AutoCompleteBox ItemsSource="{Binding ConditionOptions}"
-                                             Text="{Binding SelectedEquipment.Condition}"
-                                             FilterMode="Contains"
-                                             MinimumPrefixLength="0"
-                                             HorizontalAlignment="Stretch"/>
-                        </StackPanel>
+                        <controls:FloatingLabelAutoComplete Grid.Column="2"
+                                                            Text="{Binding SelectedEquipment.Condition}"
+                                                            ItemsSource="{Binding ConditionOptions}"
+                                                            Label="{Binding Loc[ConditionWatermark]}"/>
                     </Grid>
 
                     <TextBlock Classes="muted" Text="{Binding Loc[ImageSection]}" FontWeight="SemiBold" Margin="0,4,0,0"/>

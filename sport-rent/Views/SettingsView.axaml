@@ -37,12 +37,21 @@
             <Border Classes="card">
                 <StackPanel Spacing="12">
                     <TextBlock Classes="h2" Text="{Binding Loc[FineSection]}"/>
-                    <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Loc[FinePerDayLabel]}" VerticalAlignment="Center" Foreground="{DynamicResource TextLo}"/>
-                        <NumericUpDown Value="{Binding FinePerDay}"
-                                       Minimum="0" Maximum="10000"
-                                       FormatString="F2"
-                                       Width="160"/>
+                    <StackPanel Spacing="12" MaxWidth="360">
+                        <StackPanel Spacing="2">
+                            <TextBlock Classes="form-label" Text="{Binding Loc[FinePerDayLabel]}"/>
+                            <NumericUpDown Value="{Binding FinePerDay}"
+                                           Minimum="0" Maximum="10000"
+                                           FormatString="F2"
+                                           HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                        <StackPanel Spacing="2">
+                            <TextBlock Classes="form-label" Text="{Binding Loc[DamageFinePercentLabel]}"/>
+                            <NumericUpDown Value="{Binding DamageFinePercent}"
+                                           Minimum="0" Maximum="500"
+                                           FormatString="F0"
+                                           HorizontalAlignment="Stretch"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Border>

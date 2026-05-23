@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "Id": 1,
+    "CustomerId": 3,
+    "UserId": 0,
+    "RentalDate": "2026-05-23T00:00:00",
+    "DueDate": "2026-05-30T00:00:00",
+    "ReturnDate": "2026-05-23T00:00:00",
+    "Status": "Returned",
+    "TotalAmount": 900,
+    "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 1,
+        "Quantity": 2,
+        "DailyRate": 150,
+        "Days": 3,
+        "Subtotal": 900
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "CustomerId": 5,
+    "UserId": 0,
+    "RentalDate": "2026-05-23T00:00:00",
+    "DueDate": "2026-05-30T00:00:00",
+    "ReturnDate": "2026-05-23T00:00:00",
+    "Status": "Returned",
+    "TotalAmount": 1200.0,
+    "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 800.0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 4,
+        "Quantity": 1,
+        "DailyRate": 100,
+        "Days": 4,
+        "Subtotal": 400
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "CustomerId": 4,
+    "UserId": 0,
+    "RentalDate": "2026-05-23T00:00:00",
+    "DueDate": "2026-06-01T00:00:00",
+    "ReturnDate": "2026-06-22T00:00:00",
+    "Status": "Returned",
+    "TotalAmount": 4692.0,
+    "DepositPaid": 0,
+    "OverdueFine": 1092.0,
+    "DamageFine": 2000.0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 2,
+        "Quantity": 1,
+        "DailyRate": 200,
+        "Days": 8,
+        "Subtotal": 1600
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "CustomerId": 5,
+    "UserId": 0,
+    "RentalDate": "2026-05-23T00:00:00",
+    "DueDate": "2026-05-31T00:00:00",
+    "ReturnDate": "2026-06-02T00:00:00",
+    "Status": "Returned",
+    "TotalAmount": 1653.00,
+    "DepositPaid": 0,
+    "OverdueFine": 108.0,
+    "DamageFine": 1365.00,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 3,
+        "Quantity": 1,
+        "DailyRate": 180,
+        "Days": 1,
+        "Subtotal": 180
+      }
+    ]
+  }
+]
