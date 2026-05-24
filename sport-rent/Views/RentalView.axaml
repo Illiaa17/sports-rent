@@ -16,21 +16,29 @@
                 <Grid RowDefinitions="Auto,*,Auto" Margin="0,12,0,0">
 
                     
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12" Margin="0,0,0,10">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12" Margin="0,0,0,10"
+                                VerticalAlignment="Center">
                         <controls:FloatingLabelBox Text="{Binding SearchText}"
                                                    Label="{Binding Loc[SearchRentalWatermark]}"
-                                                   Width="300"/>
+                                                   Compact="True"
+                                                   Width="300"
+                                                   VerticalAlignment="Center"/>
 
-                        <TextBlock Text="{Binding Loc[StatusFilterLabel]}" VerticalAlignment="Center" Foreground="{DynamicResource TextLo}"/>
-                        <ComboBox ItemsSource="{Binding StatusFilters}"
-                                  SelectedItem="{Binding SelectedStatus}"
-                                  Width="130" Height="40"
-                                  VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Loc[StatusFilterLabel]}"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource TextLo}"/>
+                            <ComboBox ItemsSource="{Binding StatusFilters}"
+                                      SelectedItem="{Binding SelectedStatus}"
+                                      Width="130"
+                                      MinHeight="38"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
 
                         <Button Classes="ghost"
                                 Content="{Binding Loc[ExportRentalsCsvBtn]}"
                                 Command="{Binding ExportCsvCommand}"
-                                Height="40"
+                                MinHeight="38"
                                 VerticalAlignment="Center"/>
                     </StackPanel>
 

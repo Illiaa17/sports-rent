@@ -41,6 +41,16 @@
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
         </Style>
+
+        <Style Selector="^:compact /template/ TextBlock#PART_Float">
+            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="Height" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style Selector="^:compact /template/ StackPanel">
+            <Setter Property="Spacing" Value="0"/>
+        </Style>
     </ControlTheme>
 
 </ResourceDictionary>

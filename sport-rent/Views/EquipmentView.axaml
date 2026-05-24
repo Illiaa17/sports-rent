@@ -12,14 +12,17 @@
                    Grid.ColumnSpan="2" Margin="0,0,0,14"/>
 
         <!-- Toolbar -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,0,0,12">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,0,0,12"
+                    VerticalAlignment="Center">
             <controls:FloatingLabelBox Text="{Binding SearchText}"
                                        Label="{Binding Loc[SearchEquipmentWatermark]}"
-                                       Width="360"/>
+                                       Compact="True"
+                                       Width="360"
+                                       VerticalAlignment="Center"/>
             <Button Classes="ghost"
                     Content="{Binding Loc[ExportCsvBtn]}"
                     Command="{Binding ExportCsvCommand}"
-                    Height="40"
+                    MinHeight="38"
                     VerticalAlignment="Center"/>
         </StackPanel>
 

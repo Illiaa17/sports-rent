@@ -102,7 +102,11 @@ public class ReturnDialog : Window
             MinWidth = 300,
             HorizontalAlignment = HorizontalAlignment.Stretch
         };
-        _returnDatePicker.SelectedDateChanged += (_, _) => UpdateOverdueSection();
+        _returnDatePicker.PropertyChanged += (_, e) =>
+        {
+            if (e.Property == DatePicker.SelectedDateProperty)
+                UpdateOverdueSection();
+        };
 
         returnLabel.TextWrapping = TextWrapping.Wrap;
 
