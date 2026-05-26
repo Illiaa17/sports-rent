@@ -26,27 +26,90 @@
                     VerticalAlignment="Center"/>
         </StackPanel>
 
-        <!-- Equipment DataGrid + empty state -->
+        <!-- Equipment cards -->
         <Border Grid.Row="2" Background="{DynamicResource SurfaceBg}"
                 BorderBrush="{DynamicResource Border}" BorderThickness="1"
-                CornerRadius="10">
+                CornerRadius="10" ClipToBounds="True">
             <Panel>
-                <DataGrid ItemsSource="{Binding PagedEquipment}"
-                          SelectedItem="{Binding SelectedEquipment}"
-                          AutoGenerateColumns="False"
-                          CanUserSortColumns="True"
-                          IsReadOnly="True"
-                          x:CompileBindings="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColId], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Id}" Width="60"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColName], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Name}" Width="*"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColCategory], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Category}" Width="140"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColDailyRate], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DailyRate, StringFormat={}{0:F2}}" Width="100"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColDeposit], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding DepositAmount, StringFormat={}{0:F2}}" Width="100"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColQty], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Quantity}" Width="70"/>
-                        <DataGridTextColumn Header="{ReflectionBinding [ColCondition], Source={x:Static svc:LocalizationService.Instance}}" Binding="{Binding Condition}" Width="110"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto"
+                              IsVisible="{Binding !HasNoData}">
+                    <ItemsControl ItemsSource="{Binding EquipmentCards}" Margin="12" x:CompileBindings="False">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:EquipmentCardViewModel">
+                                <Button Classes="equipment-card"
+                                        Classes.selected="{Binding IsSelected}"
+                                        Command="{Binding $parent[UserControl].((vm:EquipmentViewModel)DataContext).SelectEquipmentCommand}"
+                                        CommandParameter="{Binding Equipment}"
+                                        Width="300" Margin="0,0,16,16"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch">
+                                    <Border Classes="equipment-card-inner">
+                                        <StackPanel Spacing="0">
+                                            <Border Height="170"
+                                                    CornerRadius="8,8,0,0"
+                                                    ClipToBounds="True"
+                                                    Background="{DynamicResource SurfaceAlt}">
+                                                <Panel>
+                                                    <Image Source="{Binding Image}"
+                                                           Stretch="Uniform"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           IsVisible="{Binding HasImage}"/>
+                                                    <TextBlock Text="{ReflectionBinding [NoImageLabel], Source={x:Static svc:LocalizationService.Instance}}"
+                                                               Foreground="{DynamicResource TextLo}"
+                                                               FontSize="14"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               IsVisible="{Binding !HasImage}"/>
+                                                </Panel>
+                                            </Border>
+                                            <StackPanel Spacing="6" Margin="16,14,16,16">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontSize="17"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource TextHi}"
+                                                           TextWrapping="Wrap"
+                                                           LineHeight="22"/>
+                                                <TextBlock Text="{Binding Category}"
+                                                           FontSize="13"
+                                                           Foreground="{DynamicResource TextLo}"
+                                                           TextWrapping="Wrap"/>
+                                                <StackPanel Spacing="3" Margin="0,4,0,0">
+                                                    <TextBlock FontSize="13" Foreground="{DynamicResource TextLo}" TextWrapping="Wrap">
+                                                        <Run Text="{ReflectionBinding [ColDailyRate], Source={x:Static svc:LocalizationService.Instance}}"/>
+                                                        <Run Text=": "/>
+                                                        <Run Text="{Binding DailyRateText}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="13" Foreground="{DynamicResource TextLo}" TextWrapping="Wrap">
+                                                        <Run Text="{ReflectionBinding [ColDeposit], Source={x:Static svc:LocalizationService.Instance}}"/>
+                                                        <Run Text=": "/>
+                                                        <Run Text="{Binding DepositText}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="13" Foreground="{DynamicResource TextLo}" TextWrapping="Wrap">
+                                                        <Run Text="{ReflectionBinding [ColQty], Source={x:Static svc:LocalizationService.Instance}}"/>
+                                                        <Run Text=": "/>
+                                                        <Run Text="{Binding Quantity}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="13" Foreground="{DynamicResource TextLo}" TextWrapping="Wrap">
+                                                        <Run Text="{ReflectionBinding [ColCondition], Source={x:Static svc:LocalizationService.Instance}}"/>
+                                                        <Run Text=": "/>
+                                                        <Run Text="{Binding Condition}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
                 <TextBlock Text="{Binding Loc[NoData]}"
                            Foreground="{DynamicResource TextLo}" FontSize="14"
@@ -78,13 +141,20 @@
             <ScrollViewer>
                 <StackPanel Spacing="12">
 
-                    <DockPanel>
-                        <Button DockPanel.Dock="Right" Classes="ghost"
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                        <TextBlock Grid.Column="0"
+                                   Classes="h2"
+                                   Text="{Binding FormTitle}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,12,0"/>
+                        <Button Grid.Column="1"
+                                Classes="ghost"
                                 Content="{Binding Loc[NewBtn]}"
                                 Command="{Binding NewEquipmentCommand}"
-                                Padding="10,4"/>
-                        <TextBlock Classes="h2" Text="{Binding FormTitle}" VerticalAlignment="Center"/>
-                    </DockPanel>
+                                Padding="10,4"
+                                VerticalAlignment="Center"/>
+                    </Grid>
 
                     <controls:FloatingLabelBox Text="{Binding SelectedEquipment.Name}"
                                                Label="{Binding Loc[NameWatermark]}"/>
@@ -117,7 +187,8 @@
                             HorizontalContentAlignment="Center"/>
                     <Border BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="8"
                             IsVisible="{Binding SelectedImage, Converter={x:Static ObjectConverters.IsNotNull}}">
-                        <Image Source="{Binding SelectedImage}" Height="120" Stretch="UniformToFill"/>
+                        <Image Source="{Binding SelectedImage}" Height="120" Stretch="Uniform"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
 
                     <TextBlock Text="{Binding ValidationError}"

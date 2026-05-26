@@ -19,7 +19,7 @@ public partial class EquipmentViewModel : BaseViewModel
     private readonly JsonDataService _dataService = new();
     private List<Equipment> _allEquipment = new();
 
-    public ObservableCollection<Equipment> PagedEquipment { get; } = new();
+    public ObservableCollection<EquipmentCardViewModel> EquipmentCards { get; } = new();
 
     [ObservableProperty] private Equipment selectedEquipment = new();
     [ObservableProperty] private string searchText = string.Empty;
@@ -38,12 +38,11 @@ public partial class EquipmentViewModel : BaseViewModel
         ? Loc["AddEquipmentTitle"]
         : string.Format(Loc["EditEquipmentTitle"], SelectedEquipment.Id);
 
-    public bool HasNoData => PagedEquipment.Count == 0;
+    public bool HasNoData => EquipmentCards.Count == 0;
 
     public EquipmentViewModel()
     {
-        Directory.CreateDirectory(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "equipment"));
+        EquipmentImageHelper.EnsureImagesDirectory();
         LoadEquipment();
     }
 
@@ -87,9 +86,17 @@ public partial class EquipmentViewModel : BaseViewModel
         if (CurrentPage > TotalPages) CurrentPage = TotalPages;
 
         var paged = filtered.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
-        PagedEquipment.Clear();
-        foreach (var item in paged) PagedEquipment.Add(item);
+        EquipmentCards.Clear();
+        foreach (var item in paged)
+            EquipmentCards.Add(new EquipmentCardViewModel(item));
+        SyncCardSelection();
         OnPropertyChanged(nameof(HasNoData));
+    }
+
+    private void SyncCardSelection()
+    {
+        foreach (var card in EquipmentCards)
+            card.IsSelected = SelectedEquipment.Id != 0 && card.Equipment.Id == SelectedEquipment.Id;
     }
 
     partial void OnSearchTextChanged(string value)
@@ -108,13 +115,16 @@ public partial class EquipmentViewModel : BaseViewModel
 
     partial void OnSelectedEquipmentChanged(Equipment value)
     {
-        SelectedImage = null;
-        if (!string.IsNullOrEmpty(value.ImagePath) && File.Exists(value.ImagePath))
-        {
-            try { SelectedImage = new Bitmap(value.ImagePath); }
-            catch { SelectedImage = null; }
-        }
+        SelectedImage = EquipmentImageHelper.TryLoadBitmap(value.ImagePath);
+        SyncCardSelection();
         OnPropertyChanged(nameof(FormTitle));
+    }
+
+    [RelayCommand]
+    private void SelectEquipment(Equipment? equipment)
+    {
+        if (equipment == null) return;
+        SelectedEquipment = equipment;
     }
 
     [RelayCommand]
@@ -127,9 +137,42 @@ public partial class EquipmentViewModel : BaseViewModel
 
     public void SetImagePath(string path)
     {
-        SelectedEquipment.ImagePath = path;
-        try { SelectedImage = new Bitmap(path); }
-        catch { SelectedImage = null; }
+        if (!File.Exists(path)) return;
+
+        if (SelectedEquipment.Id > 0)
+            SelectedEquipment.ImagePath = EquipmentImageHelper.PersistImage(path, SelectedEquipment.Id);
+        else
+            SelectedEquipment.ImagePath = path;
+
+        SelectedImage = EquipmentImageHelper.TryLoadBitmap(SelectedEquipment.ImagePath);
+        RefreshSelectedCardImage();
+    }
+
+    private void RefreshSelectedCardImage()
+    {
+        var card = EquipmentCards.FirstOrDefault(c => c.Equipment.Id == SelectedEquipment.Id);
+        card?.ReloadImage();
+    }
+
+    private void PersistEquipmentImageIfNeeded()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedEquipment.ImagePath) || !File.Exists(SelectedEquipment.ImagePath))
+            return;
+
+        var ext = Path.GetExtension(SelectedEquipment.ImagePath);
+        if (string.IsNullOrEmpty(ext))
+            ext = ".jpg";
+
+        var expectedPath = Path.Combine(
+            EquipmentImageHelper.ImagesDirectory,
+            $"equipment_{SelectedEquipment.Id}{ext}");
+
+        if (string.Equals(SelectedEquipment.ImagePath, expectedPath, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        SelectedEquipment.ImagePath = EquipmentImageHelper.PersistImage(
+            SelectedEquipment.ImagePath, SelectedEquipment.Id);
+        SelectedImage = EquipmentImageHelper.TryLoadBitmap(SelectedEquipment.ImagePath);
     }
 
     [RelayCommand]
@@ -147,6 +190,8 @@ public partial class EquipmentViewModel : BaseViewModel
             var idx = _allEquipment.FindIndex(e => e.Id == SelectedEquipment.Id);
             if (idx >= 0) _allEquipment[idx] = SelectedEquipment;
         }
+
+        PersistEquipmentImageIfNeeded();
         _dataService.Save("equipment.json", _allEquipment);
         LoadEquipment();
         SelectedEquipment = new Equipment();

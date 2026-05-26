@@ -44,22 +44,24 @@ public partial class EquipmentView : UserControl
 
         // Use the real local path directly — no copy needed, works on macOS sandbox
         var localPath = file.TryGetLocalPath();
-        if (!string.IsNullOrEmpty(localPath) && File.Exists(localPath))
-        {
-            vm.SetImagePath(localPath);
-            return;
-        }
-
-        // Fallback: copy to absolute local directory when local path is unavailable
         var imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "equipment");
         Directory.CreateDirectory(imagesDir);
-        var dest = Path.Combine(imagesDir, file.Name);
+        var ext = Path.GetExtension(file.Name);
+        if (string.IsNullOrEmpty(ext))
+            ext = ".jpg";
+        var dest = Path.Combine(imagesDir, $"pick_{Guid.NewGuid():N}{ext}");
 
         try
         {
-            await using var readStream = await file.OpenReadAsync();
-            await using var writeStream = File.Create(dest);
-            await readStream.CopyToAsync(writeStream);
+            if (!string.IsNullOrEmpty(localPath) && File.Exists(localPath))
+                File.Copy(localPath, dest, overwrite: true);
+            else
+            {
+                await using var readStream = await file.OpenReadAsync();
+                await using var writeStream = File.Create(dest);
+                await readStream.CopyToAsync(writeStream);
+            }
+
             vm.SetImagePath(dest);
         }
         catch

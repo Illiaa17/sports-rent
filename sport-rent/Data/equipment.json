@@ -1,79 +1,24 @@
 [
   {
     "Id": 1,
-    "Name": "\u0412\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434 \u0433\u0456\u0440\u0441\u044C\u043A\u0438\u0439",
-    "Category": "\u0412\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434\u0438",
-    "DailyRate": 150,
-    "DepositAmount": 1000,
-    "Quantity": 6,
-    "Condition": "\u0412\u0456\u0434\u043C\u0456\u043D\u043D\u0438\u0439",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T00:19:02.407318+03:00"
+    "Name": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434",
+    "Category": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434\u0438\u043D\u0433",
+    "DailyRate": 800,
+    "DepositAmount": 400,
+    "Quantity": 10,
+    "Condition": "Good",
+    "ImagePath": "/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/images/equipment/equipment_1.jpg",
+    "CreatedAt": "2026-05-26T22:35:32.584818+03:00"
   },
   {
     "Id": 2,
-    "Name": "\u041B\u0438\u0436\u0456 \u0433\u0456\u0440\u0441\u044C\u043A\u0456",
-    "Category": "\u041B\u0438\u0436\u043D\u0435 \u0441\u043F\u043E\u0440\u044F\u0434\u0436\u0435\u043D\u043D\u044F",
-    "DailyRate": 200,
-    "DepositAmount": 2000,
-    "Quantity": 4,
-    "Condition": "\u041F\u043E\u0448\u043A\u043E\u0434\u0436\u0435\u043D\u043E",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
-  },
-  {
-    "Id": 3,
-    "Name": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434",
-    "Category": "\u0421\u043D\u043E\u0443\u0431\u043E\u0440\u0434\u0438\u043D\u0433",
-    "DailyRate": 180,
-    "DepositAmount": 1500,
-    "Quantity": 3,
-    "Condition": "\u041F\u043E\u0448\u043A\u043E\u0434\u0436\u0435\u043D\u043E",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
-  },
-  {
-    "Id": 4,
-    "Name": "\u041D\u0430\u043C\u0435\u0442 \u0442\u0443\u0440\u0438\u0441\u0442\u0438\u0447\u043D\u0438\u0439",
-    "Category": "\u041A\u0435\u043C\u043F\u0456\u043D\u0433",
-    "DailyRate": 100,
-    "DepositAmount": 800,
-    "Quantity": 6,
-    "Condition": "\u041F\u043E\u0448\u043A\u043E\u0434\u0436\u0435\u043D\u043E",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T00:19:02.407381+03:00"
-  },
-  {
-    "Id": 5,
-    "Name": "\u0421\u043A\u0435\u0439\u0442\u0431\u043E\u0440\u0434",
-    "Category": "\u0421\u043A\u0435\u0439\u0442\u0438\u043D\u0433",
-    "DailyRate": 80,
-    "DepositAmount": 500,
-    "Quantity": 5,
-    "Condition": "\u0414\u043E\u0431\u0440\u0438\u0439",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T00:19:02.407382+03:00"
-  },
-  {
-    "Id": 6,
-    "Name": "bike",
-    "Category": "bike",
-    "DailyRate": 234,
-    "DepositAmount": 23444,
-    "Quantity": 344,
+    "Name": "skiing helmet",
+    "Category": "skiing",
+    "DailyRate": 500,
+    "DepositAmount": 200,
+    "Quantity": 10,
     "Condition": "Good",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-23T22:02:29.105382+03:00"
-  },
-  {
-    "Id": 7,
-    "Name": "wwdf",
-    "Category": "3rf",
-    "DailyRate": 334,
-    "DepositAmount": 0,
-    "Quantity": 22,
-    "Condition": "Good",
-    "ImagePath": "",
-    "CreatedAt": "2026-04-24T01:34:41.373632+03:00"
+    "ImagePath": "/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/images/equipment/equipment_2.webp",
+    "CreatedAt": "2026-05-26T22:37:08.611514+03:00"
   }
 ]
