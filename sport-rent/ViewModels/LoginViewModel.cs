@@ -15,7 +15,7 @@ public partial class LoginViewModel : BaseViewModel
     [ObservableProperty] private string errorMessage = string.Empty;
     [ObservableProperty] private string selectedRole = "Operator";
 
-    private readonly AuthService _authService = new();
+    private readonly AuthService _authService = AuthService.Instance;
 
     public bool IsAdminSelected => SelectedRole == "Admin";
     public bool IsOperatorSelected => SelectedRole == "Operator";

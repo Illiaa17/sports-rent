@@ -14,5 +14,13 @@
     "Role": "Operator",
     "FullName": "\u041E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 \u0406\u0432\u0430\u043D",
     "CreatedAt": "2026-04-23T00:19:02.158091+03:00"
+  },
+  {
+    "Id": 3,
+    "Login": "oper",
+    "PasswordHash": "$2a$11$ECDUM6FcpspKOCzePpicKexa/iz9lnLK57Dq41ssi2ieMczbMkGfa",
+    "Role": "Operator",
+    "FullName": "Illia",
+    "CreatedAt": "2026-05-27T22:46:29.75719+03:00"
   }
 ]
