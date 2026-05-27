@@ -33,6 +33,8 @@ public class LocalizationService : INotifyPropertyChanged
             {"LoginBtn", "Увійти"}, {"AppTitle", "Прокат Спорт"},
             {"AppSubtitle", "Автоматизація пункту прокату"},
             {"FillAllFields", "Заповніть всі поля"}, {"InvalidCredentials", "Невірні облікові дані"},
+            {"SelectRoleLabel", "Оберіть роль для входу"}, {"AdminRoleLabel", "Адміністратор"}, {"OperatorRoleLabel", "Оператор"},
+            {"RoleMismatch", "Ви обрали іншу роль. Увійдіть з правильним типом доступу."},
             // Navigation
             {"Dashboard", "Головна"}, {"Equipment", "Спорядження"}, {"Customers", "Клієнти"},
             {"Rentals", "Оренди"}, {"Settings", "Налаштування"}, {"Logout", "Вийти"}, {"Users", "Користувачі"},
@@ -133,6 +135,8 @@ public class LocalizationService : INotifyPropertyChanged
             {"LoginBtn", "Sign In"}, {"AppTitle", "Sport Rent"},
             {"AppSubtitle", "Rental shop automation"},
             {"FillAllFields", "Fill all fields"}, {"InvalidCredentials", "Invalid credentials"},
+            {"SelectRoleLabel", "Select role"}, {"AdminRoleLabel", "Administrator"}, {"OperatorRoleLabel", "Operator"},
+            {"RoleMismatch", "Selected role doesn't match this account."},
             // Navigation
             {"Dashboard", "Dashboard"}, {"Equipment", "Equipment"}, {"Customers", "Customers"},
             {"Rentals", "Rentals"}, {"Settings", "Settings"}, {"Logout", "Logout"}, {"Users", "Users"},

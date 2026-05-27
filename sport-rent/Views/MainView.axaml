@@ -25,18 +25,22 @@
 
                 <StackPanel Grid.Row="1" Spacing="4">
                     <Button Classes="nav" Content="{Binding Loc[Dashboard]}"
-                            Command="{Binding ShowDashboardCommand}"/>
+                            Command="{Binding ShowDashboardCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
                     <Button Classes="nav" Content="{Binding Loc[Equipment]}"
-                            Command="{Binding ShowEquipmentCommand}"/>
+                            Command="{Binding ShowEquipmentCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
                     <Button Classes="nav" Content="{Binding Loc[Customers]}"
-                            Command="{Binding ShowCustomersCommand}"/>
+                            Command="{Binding ShowCustomersCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
                     <Button Classes="nav" Content="{Binding Loc[Rentals]}"
                             Command="{Binding ShowRentalsCommand}"/>
                     <Button Classes="nav" Content="{Binding Loc[Users]}"
                             Command="{Binding ShowUsersCommand}"
                             IsVisible="{Binding IsAdmin}"/>
                     <Button Classes="nav" Content="{Binding Loc[Settings]}"
-                            Command="{Binding ShowSettingsCommand}"/>
+                            Command="{Binding ShowSettingsCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
                 </StackPanel>
 
                 <Button Grid.Row="2" Classes="danger"

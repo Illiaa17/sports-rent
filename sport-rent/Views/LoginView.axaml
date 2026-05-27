@@ -23,6 +23,25 @@
                 </StackPanel>
 
                 <StackPanel Spacing="14">
+                    <TextBlock Text="{Binding Loc[SelectRoleLabel]}"
+                               Foreground="{DynamicResource TextLo}"
+                               HorizontalAlignment="Center"
+                               FontSize="12"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                        <Button Content="{Binding Loc[AdminRoleLabel]}"
+                                Classes.primary="{Binding IsAdminSelected}"
+                                Classes.ghost="{Binding IsOperatorSelected}"
+                                Command="{Binding SetRoleCommand}"
+                                CommandParameter="Admin"
+                                MinWidth="160" MinHeight="40"/>
+                        <Button Content="{Binding Loc[OperatorRoleLabel]}"
+                                Classes.primary="{Binding IsOperatorSelected}"
+                                Classes.ghost="{Binding IsAdminSelected}"
+                                Command="{Binding SetRoleCommand}"
+                                CommandParameter="Operator"
+                                MinWidth="160" MinHeight="40"/>
+                    </StackPanel>
+
                     <controls:FloatingLabelBox Text="{Binding LoginName}"
                                                Label="{Binding Loc[LoginWatermark]}"/>
                     <controls:FloatingLabelBox Text="{Binding Password}"

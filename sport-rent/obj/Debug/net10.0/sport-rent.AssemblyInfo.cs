@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sport-rent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27b21b05272cf3d5972b2a50cba26d5cf09e2edb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cd23b3be8ae9aacf11dd0e1a635a2de4a73cacc")]
 [assembly: System.Reflection.AssemblyProductAttribute("sport-rent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sport-rent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

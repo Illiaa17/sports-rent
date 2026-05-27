@@ -13,8 +13,26 @@ public partial class LoginViewModel : BaseViewModel
     [ObservableProperty] private string loginName = string.Empty;
     [ObservableProperty] private string password = string.Empty;
     [ObservableProperty] private string errorMessage = string.Empty;
+    [ObservableProperty] private string selectedRole = "Operator";
 
     private readonly AuthService _authService = new();
+
+    public bool IsAdminSelected => SelectedRole == "Admin";
+    public bool IsOperatorSelected => SelectedRole == "Operator";
+
+    partial void OnSelectedRoleChanged(string value)
+    {
+        OnPropertyChanged(nameof(IsAdminSelected));
+        OnPropertyChanged(nameof(IsOperatorSelected));
+    }
+
+    [RelayCommand]
+    private void SetRole(string role)
+    {
+        if (role is not ("Admin" or "Operator"))
+            return;
+        SelectedRole = role;
+    }
 
     [RelayCommand]
     private void Login()
@@ -27,6 +45,13 @@ public partial class LoginViewModel : BaseViewModel
 
         if (_authService.Login(LoginName, Password))
         {
+            var role = AuthService.Instance.CurrentUser?.Role;
+            if (!string.Equals(role, SelectedRole, System.StringComparison.OrdinalIgnoreCase))
+            {
+                ErrorMessage = LocalizationService.Instance["RoleMismatch"];
+                return;
+            }
+
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 var mainWindow = new MainWindow { DataContext = new MainViewModel() };

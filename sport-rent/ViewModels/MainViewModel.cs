@@ -15,10 +15,11 @@ public partial class MainViewModel : BaseViewModel
     [ObservableProperty] private object? currentView;
 
     public bool IsAdmin => AuthService.Instance.IsAdmin;
+    public bool IsOperator => AuthService.Instance.CurrentUser?.Role == "Operator";
 
     public MainViewModel()
     {
-        CurrentView = new DashboardViewModel();
+        CurrentView = IsAdmin ? new DashboardViewModel() : new RentalViewModel();
     }
 
     [RelayCommand] private void ShowDashboard() => CurrentView = new DashboardViewModel();
