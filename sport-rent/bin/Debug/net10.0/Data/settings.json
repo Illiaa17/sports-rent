@@ -1,5 +1,6 @@
 {
-  "FinePerDay": 52.0,
+  "FinePerDay": 101.0,
+  "DamageFinePercent": 100.0,
   "Language": "en",
   "Theme": "Dark"
 }

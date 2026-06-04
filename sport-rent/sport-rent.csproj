@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Content Include="Data\**\*" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.2.0" />
         <PackageReference Include="Avalonia.Desktop" Version="11.2.0" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.0" />

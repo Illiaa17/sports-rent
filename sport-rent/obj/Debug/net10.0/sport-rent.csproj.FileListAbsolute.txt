@@ -138,3 +138,13 @@
 /Users/illiapaidych/University/sports-rent/sport-rent/obj/Debug/net10.0/sport-rent.genruntimeconfig.cache
 /Users/illiapaidych/University/sports-rent/sport-rent/obj/Debug/net10.0/ref/sport-rent.dll
 /Users/illiapaidych/University/sports-rent/sport-rent/obj/Debug/net10.0/sport-rent.sourcelink.json
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/customers.json
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/rentals.json
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/.DS_Store
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/equipment.json
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/images/.DS_Store
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/images/equipment/equipment_1.jpg
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/images/equipment/equipment_2.webp
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/images/equipment/equipment_3.jpg
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/settings.json
+/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/Data/users.json

@@ -172,22 +172,15 @@ public partial class EquipmentViewModel : BaseViewModel
 
     private void PersistEquipmentImageIfNeeded()
     {
-        if (string.IsNullOrWhiteSpace(SelectedEquipment.ImagePath) || !File.Exists(SelectedEquipment.ImagePath))
+        var full = EquipmentImageHelper.ResolveFullPath(SelectedEquipment.ImagePath);
+        if (full == null)
             return;
 
-        var ext = Path.GetExtension(SelectedEquipment.ImagePath);
-        if (string.IsNullOrEmpty(ext))
-            ext = ".jpg";
-
-        var expectedPath = Path.Combine(
-            EquipmentImageHelper.ImagesDirectory,
-            $"equipment_{SelectedEquipment.Id}{ext}");
-
-        if (string.Equals(SelectedEquipment.ImagePath, expectedPath, StringComparison.OrdinalIgnoreCase))
+        var expectedJson = $"images/equipment/equipment_{SelectedEquipment.Id}{Path.GetExtension(full)}";
+        if (string.Equals(SelectedEquipment.ImagePath, expectedJson, StringComparison.OrdinalIgnoreCase))
             return;
 
-        SelectedEquipment.ImagePath = EquipmentImageHelper.PersistImage(
-            SelectedEquipment.ImagePath, SelectedEquipment.Id);
+        SelectedEquipment.ImagePath = EquipmentImageHelper.PersistImage(full, SelectedEquipment.Id);
         SelectedImage = EquipmentImageHelper.TryLoadBitmap(SelectedEquipment.ImagePath);
     }
 

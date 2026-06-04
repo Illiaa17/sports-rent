@@ -2,17 +2,25 @@
   {
     "Id": 1,
     "Login": "admin",
-    "PasswordHash": "$2a$11$nyrVliMkl5MtdJL6fvCHTec4rJpo5s1GI3DOcDMtm0kOUl57zHUqC",
+    "PasswordHash": "$2a$11$FHTUNw1D34F4W8YGUqj/X.sAbNuwjRTcWiZ0U4fNxb8Jbs8kawg2.",
     "Role": "Admin",
     "FullName": "\u0410\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440",
-    "CreatedAt": "2026-04-22T23:20:53.935885+03:00"
+    "CreatedAt": "2026-04-23T00:19:01.957377+03:00"
   },
   {
     "Id": 2,
     "Login": "operator",
-    "PasswordHash": "$2a$11$2CDzX7InVLafi.yDr9PvhOcZLlplmQJ.SNqBQQf/MU4Hzkq8O6vqC",
+    "PasswordHash": "$2a$11$UMfbYxn5v1sDEsVkrY8Ja.lC0a3M5uXi9Mo2X6ieNk30eXh7IvGpa",
     "Role": "Operator",
     "FullName": "\u041E\u043F\u0435\u0440\u0430\u0442\u043E\u0440 \u0406\u0432\u0430\u043D",
-    "CreatedAt": "2026-04-22T23:20:54.143421+03:00"
+    "CreatedAt": "2026-04-23T00:19:02.158091+03:00"
+  },
+  {
+    "Id": 3,
+    "Login": "oper",
+    "PasswordHash": "$2a$11$ECDUM6FcpspKOCzePpicKexa/iz9lnLK57Dq41ssi2ieMczbMkGfa",
+    "Role": "Operator",
+    "FullName": "Illia",
+    "CreatedAt": "2026-05-27T22:46:29.75719+03:00"
   }
 ]

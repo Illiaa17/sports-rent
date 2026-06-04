@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
+using sport_rent.Helpers;
 using sport_rent.ViewModels;
 using System;
 using System.IO;
@@ -42,10 +43,9 @@ public partial class EquipmentView : UserControl
 
         var file = files[0];
 
-        // Use the real local path directly — no copy needed, works on macOS sandbox
         var localPath = file.TryGetLocalPath();
-        var imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "equipment");
-        Directory.CreateDirectory(imagesDir);
+        EquipmentImageHelper.EnsureImagesDirectory();
+        var imagesDir = EquipmentImageHelper.ImagesDirectory;
         var ext = Path.GetExtension(file.Name);
         if (string.IsNullOrEmpty(ext))
             ext = ".jpg";
