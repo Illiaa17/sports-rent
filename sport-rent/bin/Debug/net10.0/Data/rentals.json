@@ -9,6 +9,9 @@
     "Status": "Returned",
     "TotalAmount": 1,
     "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
     "Items": [
       {
         "Id": 0,
@@ -28,9 +31,12 @@
     "RentalDate": "2026-04-23T00:58:18.793411",
     "DueDate": "2026-04-30T00:58:18.793414",
     "ReturnDate": null,
-    "Status": "Active",
+    "Status": "Overdue",
     "TotalAmount": 1203,
     "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
     "Items": [
       {
         "Id": 0,

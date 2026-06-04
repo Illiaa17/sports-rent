@@ -43,11 +43,8 @@ public static class FineService
         return total;
     }
 
-    public static string DamagedConditionLabel()
-    {
-        var lang = LocalizationService.Instance.CurrentLang;
-        return lang == "en" ? "Damaged" : "Пошкоджено";
-    }
+    public static string DamagedConditionLabel() =>
+        EquipmentConditionService.Normalize("Damaged");
 
     public static decimal BaseRentalAmount(Rental rental) =>
         rental.Items.Sum(i => i.Subtotal);

@@ -43,14 +43,30 @@ public partial class EquipmentViewModel : BaseViewModel
     public EquipmentViewModel()
     {
         EquipmentImageHelper.EnsureImagesDirectory();
+        LocalizationService.Instance.LanguageChanged += OnEquipmentLanguageChanged;
         LoadEquipment();
+    }
+
+    private void OnEquipmentLanguageChanged()
+    {
+        NormalizeEquipmentConditions();
+        if (!string.IsNullOrWhiteSpace(SelectedEquipment.Condition))
+            SelectedEquipment.Condition = EquipmentConditionService.Normalize(SelectedEquipment.Condition);
+        RebuildOptions();
     }
 
     private void LoadEquipment()
     {
         _allEquipment = _dataService.Load<Equipment>("equipment.json");
+        NormalizeEquipmentConditions();
         ApplyFilter();
         RebuildOptions();
+    }
+
+    private void NormalizeEquipmentConditions()
+    {
+        foreach (var item in _allEquipment)
+            item.Condition = EquipmentConditionService.Normalize(item.Condition);
     }
 
     private void RebuildOptions()
@@ -63,9 +79,9 @@ public partial class EquipmentViewModel : BaseViewModel
         CategoryOptions.Clear();
         foreach (var c in cats) CategoryOptions.Add(c);
 
-        var defaults = new[] { "New", "Good", "Fair", "Poor" };
+        var defaults = EquipmentConditionService.GetDefaultOptions();
         var conds = _allEquipment
-            .Select(e => e.Condition)
+            .Select(e => EquipmentConditionService.Normalize(e.Condition))
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .Concat(defaults)
             .Distinct(StringComparer.OrdinalIgnoreCase)

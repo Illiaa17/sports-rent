@@ -11,7 +11,7 @@ public class Equipment
     public decimal DailyRate { get; set; }
     public decimal DepositAmount { get; set; }
     public int Quantity { get; set; }
-    public string Condition { get; set; } = "Good";
+    public string Condition { get; set; } = "Добрий";
     public string ImagePath { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 }

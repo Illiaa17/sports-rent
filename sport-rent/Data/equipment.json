@@ -6,7 +6,7 @@
     "DailyRate": 800,
     "DepositAmount": 400,
     "Quantity": 10,
-    "Condition": "Good",
+    "Condition": "Добрий",
     "ImagePath": "/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/images/equipment/equipment_1.jpg",
     "CreatedAt": "2026-05-26T22:35:32.584818+03:00"
   },
@@ -16,8 +16,8 @@
     "Category": "skiing",
     "DailyRate": 500,
     "DepositAmount": 200,
-    "Quantity": 8,
-    "Condition": "Good",
+    "Quantity": 9,
+    "Condition": "Пошкоджено",
     "ImagePath": "/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/images/equipment/equipment_2.webp",
     "CreatedAt": "2026-05-26T22:37:08.611514+03:00"
   },
@@ -28,7 +28,7 @@
     "DailyRate": 1500,
     "DepositAmount": 700,
     "Quantity": 5,
-    "Condition": "Good",
+    "Condition": "Добрий",
     "ImagePath": "/Users/illiapaidych/University/sports-rent/sport-rent/bin/Debug/net10.0/images/equipment/equipment_3.jpg",
     "CreatedAt": "2026-05-26T22:44:54.617+03:00"
   }

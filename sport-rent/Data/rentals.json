@@ -203,14 +203,14 @@
     "Id": 9,
     "CustomerId": 12,
     "UserId": 0,
-    "RentalDate": "2026-05-26T22:52:25.264512",
-    "DueDate": "2026-06-02T22:52:25.264517",
-    "ReturnDate": null,
-    "Status": "Active",
-    "TotalAmount": 1000,
+    "RentalDate": "2026-05-26T00:00:00",
+    "DueDate": "2026-06-02T00:00:00",
+    "ReturnDate": "2026-06-04T16:14:26.282754",
+    "Status": "Returned",
+    "TotalAmount": 1602.0,
     "DepositPaid": 0,
-    "OverdueFine": 0,
-    "DamageFine": 0,
+    "OverdueFine": 202.0,
+    "DamageFine": 400.0,
     "ManualFine": 0,
     "Items": [
       {
@@ -221,6 +221,31 @@
         "DailyRate": 500,
         "Days": 1,
         "Subtotal": 1000
+      }
+    ]
+  },
+  {
+    "Id": 10,
+    "CustomerId": 5,
+    "UserId": 0,
+    "RentalDate": "2026-05-28T00:00:00",
+    "DueDate": "2026-06-04T00:00:00",
+    "ReturnDate": null,
+    "Status": "Overdue",
+    "TotalAmount": 500,
+    "DepositPaid": 0,
+    "OverdueFine": 0,
+    "DamageFine": 0,
+    "ManualFine": 0,
+    "Items": [
+      {
+        "Id": 0,
+        "RentalId": 0,
+        "EquipmentId": 2,
+        "Quantity": 1,
+        "DailyRate": 500,
+        "Days": 1,
+        "Subtotal": 500
       }
     ]
   }
